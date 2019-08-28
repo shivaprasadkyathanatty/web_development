@@ -1,0 +1,12 @@
+form{background:#144068;
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Manjari', sans-serif;
+ color: white; text-align: center;}
+ #submit{
+     border-radius: 25px;
+     background: #A5CCCC;
+     padding: 5px;
+     width: auto;
+     height: 75px;
+     font-size: 1.5em
+ }

@@ -1,0 +1,13 @@
+h1{text-align: center;
+  font-family: 'Lexend Giga', sans-serif;
+}
+td{border: 6px solid white;
+height: 200px;
+width:100px;}
+.art{margin: auto;}
+
+#one{background-color: #BEE6CE;}
+#two{background-color: #384D48;}
+#three{background-color:#55868C; }
+#four{background-color: #81A684;}
+#five{background-color: #BBB09B;}

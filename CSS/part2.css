@@ -1,0 +1,10 @@
+/* tag{property:value} */
+
+body{background: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+background-repeat: no-repeat;}
+div{background:#AED6F1;
+border-color: #1A5276;
+border-width: thick;
+border-style: double;}
+p{color: #9A7D0A}
+span{background: #D7BDE2}
