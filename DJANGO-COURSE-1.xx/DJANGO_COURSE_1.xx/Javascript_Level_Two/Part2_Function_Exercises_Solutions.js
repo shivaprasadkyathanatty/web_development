@@ -69,17 +69,6 @@ function stringTimes(str, n) {
     return returnStr;
 }
 
-function stringTimes(str, n) {
-      //Code Goes Here
-      var res = "";
-      var i=0;
-      while (i<n)
-      {
-        res = res+str
-        i=i+1
-      }
-      return res
-}
 
 
 // PROBLEM 4: LUCKY SUM
