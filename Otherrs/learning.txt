@@ -1,0 +1,2395 @@
+GIT Coach:
+
+$git
+$git help
+$git help config
+Configuration Commands
+Git Configuration Commands
+What's the current directory (present working directory)?
+pwd
+Git Config (Global/User-level) Syntax
+git config --global setting value
+Configure User and Email
+General Syntax:
+
+git config --global user.name "Your Name"
+git config --global user.email "you@someplace.com"
+Example using course author's information:
+
+git config --global user.name "Jason Taylor"
+git config --global user.email "jason@jasongtaylor.com"
+Listing All Global Configuration Settings
+git config --global --list
+Seeing Git's User-based Config file
+cat ~/.gitconfig
+
+
+Starting Commands
+Git Starting Commands
+
+git and atom integration (https://www.google.com/search?q=how+to+link+github+with+atom&oq=how+to+link+github+with+atom&aqs=chrome..69i57.6997j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=_Kg9mXe6TJanaz7sP2_250A816)
+
+https://github.atom.io/auth/github_package/token
+
+Lecture Command Listing - Fresh Start
+pwd
+cd projects/
+git init git-demo
+
+
+Lecture Command Listing - Start with Existing Project
+pwd
+cd projects/
+cd website/
+ls
+git init
+
+
+Command Reference
+Present Workding Directory
+
+pwd
+Change Directory
+
+cd folder-name
+Git initialization
+
+git init [project-name]
+project-name parameter is optional. If not supplied, Git will initialize the current directory.
+
+
+
+for a demo project.. download it from here:
+http://www.initializr.com/
+
+
+Git First Commit Commands
+
+
+Lecture Command Listing
+pwd
+ls
+mate README.md
+ls
+git status
+git add README.md
+git status
+git commit -m "Initial commit"
+clear
+git status
+
+
+Command Reference
+List
+
+ls
+Lists files and folders in current directory. Without parameters, will list non-hidden folders and files.
+
+Git Status
+
+git status
+Shows which files have been modified in the working directory vs Git's staging area.
+
+Git Add
+
+git add file-name
+Adds the new or newly modified file-name to Git's staging area (index).
+
+Git Commit
+
+git commit -m "A really good commit message"
+Commits all files currently in Git's staging area. The -m parameter allows for a commit message directly from the command line.
+
+Clear!
+
+clear
+Clears all previous commands from the terminal screen -- just a bit of clean up.
+
+Text Mate
+
+mate file-name
+All command line demos are preformed on the MacOS. Creating and editing files is done with TextMate 2 (free) using the mate command from Terminal. Passing a file-name to the mate command will create or open that file. Windows users can use the notepad file-name command instead.
+
+
+
+Working Locally Commands
+Git Working Locally Commands
+
+
+Lecture Command Listing - Working Locally, Part One
+pwd
+git status
+mate README.md
+git status
+git add README.md
+git status
+git commit -m "Adding some ipsum"
+clear
+git status
+mate README.md
+git status
+git commit -am "Adding more ipsum"
+git status
+
+
+Lecture Command Listing - Working Locally, Part Two
+pwd
+git status
+clear
+mate index.html
+git status
+git add index.html
+git status
+mate README.md
+git status
+clear
+git status
+git add README.md
+git status
+git commit -m "A few changes for the website"
+clear
+mate README.md
+mate index.html
+git status
+git add .
+git status
+git commit -m "A few more changes for website"
+clear
+mate README.md
+git status
+git add README.md
+git status
+git reset HEAD README.md
+clear
+git status
+mate README.md
+git checkout -- README.md
+mate README.md
+git status
+
+
+Command Reference
+Express Commit for Tracked files
+
+git commit -am "Awesome commit message"
+Use the -a parameter with the git commit command to directly commit newly modified tracked files. Warning: Only do this for small changes. Tracked files are files that have been previously added to Git (committed or staged).
+
+Adding All Changed Files
+
+git add .
+The period parameter for the git add command will recursively add all new and newly modified files.
+
+Unstage File
+
+git reset HEAD file-name
+Following the above command will "unstage" the specified file from Git's staging area (aka index).
+
+Backout Working Directory Changes
+
+git checkout -- file-name
+Following the above command will back out any changes made to the specified file and replace it with the version last committed in Git
+
+
+
+
+
+Git History / File Management Commands
+
+
+Lecture Command Listing -- History
+git log
+git help log
+git log --oneline --graph --decorate --color
+
+
+Lecture Command Listing -- Removing Files
+pwd
+git status
+mate debug.log
+ls
+git status
+git add .
+git status
+git commit -m "adding log file that really does not belong here"
+clear
+git status
+git rm debug.log
+ls
+git status
+git commit -m "removing log file"
+clear
+mate info.log
+ls
+git add info.log
+git commit -m "adding info log"
+git status
+clear
+ls
+rm info.log
+ls
+git status
+git add .
+git add -u
+clear
+git status
+git commit -m "Removing info.log"
+
+
+Lecture Command Listing -- Moving Files
+ls
+mkdir web
+ls
+git mv index.html web
+cd web/
+ll
+pwd
+cd ..
+ls
+git status
+git commit -m "Moving index.html file to web folder"
+clear
+
+
+Lecture Command Listing -- Ignoring Files
+mate application.log
+ls
+git status
+mate .iitignore
+git status
+ls -a
+git add .gitignore
+clear
+git status
+git commit -m "adding ignore file"
+
+
+Command Reference
+Seeing Repository History
+
+git log
+git log --oneline --graph --decorate --color
+Git's log command displays the repository's history in reverse chronological order. The no-params version displays the standard view.
+
+Git log options from above: --oneline Compacts log data on to one line, abbreviating the SHA1 hash --graph Adds asterisk marks and pipes next to each commit to show the branching graph lines --decorate Adds the markers for branch names and tags next to corresponding commits --color Adds some color to the output -- nice to have, depending on the operating system
+Removing a file using Git
+
+git rm file-name
+Removing a file using Terminal
+
+rm file-name
+This removes the file outside Git's knowledge
+
+Updating Git's Index (staging area)
+
+git add -u
+The -u parameter will recursively update Git's staging area regarding deleted/moved files outside of Git.
+
+Making a directory (folder)
+
+mkdir folder-name
+The mkdir command is a nearly universal command for creating a directory/folder.
+
+Making a directory (folder)
+
+git mv source destination
+The git mv command will move the source (file or folder) to the destination with Git.
+
+
+SSH Authentication Commands
+
+
+Lecture Command Listing
+cd ~
+cd .ssh
+mkdir .ssh
+cd .ssh
+pwd
+ssh-keygen -t rsa -C "jason@jasongtaylor.com"
+mate id_rsa.pub
+ssh -T git@github.com
+
+
+Command Reference
+Generating an SSH Key
+
+ssh-keygen -t rsa -C "your.name@your-company.com"
+Use your actual email address in the example above.
+
+Verify SSH authentication
+
+ssh -T git@github.com
+Above command uses ssh to connect to GitHub over the SSH protocol.
+
+
+
+Git Remote Commands
+Git Remote Commands
+
+
+Lecture Command Listing
+git status
+git remote add origin git@github.com:scm-ninja/git-demo.git
+git remote -v
+git push -u origin master
+git push origin master
+ls
+cd web/
+mate index.html
+clear
+git commit -am "Updating index page for GH"
+git status
+git pull origin master
+git push origin master
+
+
+Command Reference
+Creating a remote repository reference
+
+git remote add remote-name remote-repository-location
+Using git remote add command allows us to associate a remote repository. Normally, you want to paste in the full URL for the remote repository given to you by your Git host (GitHub). By convention, the first or primary remote repository is named origin.
+
+List Git's Remotes
+
+git remote -v
+The git remote command lists the names of all the remote repositories and the -v parameter (verbose) will display the full URL of the remote repository for each remote name listed
+
+Send Changes to Remote
+
+git push -u remote-name branch-name
+git push remote-name branch-name
+The git push sends all your local changes (commits) on branch branch-name to the remote named remote-name. The -u parameter is needed the first time you push a branch to the remote.
+
+Receive Changes from Remote
+
+git pull remote-name branch-name
+The git pull receives all your remote changes (commits) from the remote named remote-name and on branch branch-name.
+
+Overview
+
+
+
+### STEPS ###
+$mkdir intellus_content
+$git init
+$git remote add origin git@github.com:macmillanhighered/intellus_content.git
+$cp ~/Downloads/ebsco_proquest_stats/ebsco_proquest_crawl_priority.py  .
+$git add .
+$git commit -m "first file upload"
+$git status
+$git pull origin master
+$git push -f origin master
+
+
+
+
+Business Analysis Coach:
+What is Business Analysis?
+	IIBA:
+		The practice of enabling change in an organizational context, by defining needs and recommending solutions that deliver value to stakeholders.
+	Key things:	ENABLING CHANGE
+				DEFINING NEEDS
+					Someone determines organization has need
+					BA defines that need in detail
+					Organization address that need (through project)
+				RECOMMENDING SOLUTIONS
+					New System
+					New System Features
+					New Business Process
+					New Policy
+					New Training
+				DELIVER VALUE TO STAKEHOLDER
+					Stakeholder: Anyone impacted by our work
+						Management, Other Departments, Regulators, Partenering Busiensses, Customers,
+	Quiz:
+		What are the two main settings that business analysis is performed in?
+			Project and Pre-Project
+		What is necessary before a solution can be implemented to fix an enterprise problem?
+			The organization must define the need in detailed manner.
+		Which of the following might be an element of the solution we recommend as Business Analysts?
+			Systems,System Features,Business Processes, Policies, Training
+Value of Business Anlaysis:
+	What happens if an organization isn't enabling change?
+		The organization does not just stay the same - it loses it's ground.
+		Some ramifications could include:
+			loss of customers
+			substantial increase in costs
+			substantial drop in revenues
+	What happens if an organization isn't identifying its needs?
+		How on earth can an organization make positive change, if it doesn't know what it needs?
+		If it doesn't understand its own needs, the organization will make BAD DECISIONS, and business will suffer.
+	What happens if an organization isn't finding solutions to its needs?
+		Again, the organization is losing ground.It's failing to achieve the positive change it needs to succeed.
+	What happens if the solutions dont meet the needs of its stakeholders?
+		Solutions that don't meet the needs of all their stakeholders are poor or incomplete solutons.
+	Quiz:
+		Which of the following is one of the ways an organization can be hurt by not responding to change?
+			Increase in costs
+		True/False: It is important for an enterprise to understand all of the needs of its stakeholders, even if there is no solution that meets all those needs.
+			True
+			Unfortunately, sometimes a single solution will not satisfy all stakeholders. In those cases, Business Analysts must determine what the best solution is, keeping in mind the various needs.
+What Problem does it Address?
+	Understanding the Problem
+	Possible solutions
+		Scenario 1:
+			XYZ company: losing its business due to poor customer service
+				Approaches to understanding:
+					Getting feedback from former customers
+					Interviewing customer service team
+					analyzing data
+					observing calls
+				Possible Solutions:
+					XYZ invests in training for customer service team
+					XYZ creates a customer service portal
+					XYZ appoints a customer advocate
+		Scenario 2:
+			XYZ company: slow growth due to lack of online portal
+				Approaches to understanding:
+					interview internal and external stakeholders
+					what features are needed?
+					how will these features work?
+					what brand impression do we want to portray
+				Possible solutions:
+					development of webportal meeting the needs of all the stakeholders
+					or are there other solutions not yet considered?
+		Scenario 3:
+			Government department: needs to reduce budget while maintaining services to public
+				Approaches to understanding:
+					Interview stakeholders
+					analyze public service offering
+				Possible solutions:
+					automate tasks
+					simplify processes
+	Quiz:
+		Which of the following sounds like a problem that a Business Analyst would tackle?
+			The sales department is underperforming and management believes they need a more effective lead generation process
+				This is an organizational problem that a Business Analyst can come to understand, analyze, and propose solutions for.
+
+		How might a Business Analyst learn about an organization’s problem?
+			All these methods are valuable ways of learning about an organization’s problems.:
+				Observing a single stakeholder to see how they perform a task
+				interviewing a group of stakeholders to learn how a company process works
+				surveying customers to learn about their preferences and needs
+				modelling an organizational process using a flowchart
+Requirements:
+	Requirements are a big deal for business analysts
+		most of the day to day activities involve:
+			gathering requirements
+			eliciting requirements
+			writing/documenting requirements
+			analyzing requirements
+			modeling requirements
+	Definition:
+		A requirement is a USABLE REPRESENTATION of a NEED.Reuqirements focus on understanding what kind of VALUE could be delivered if a requirement is fulfilled. the nature of the representation may be a document but can vary widely depending on the circumstances.
+
+			Representation: requirements are documentation. they can be word docs, ppt, prototypes, mockups, flowcharts. requirements data in a system.
+			95% of the requirements are in word docs.
+
+			Requirements provide the organizational change roadmap.
+				current state --> requirements --> future state
+
+			usable:
+				requirements need to be easy to use:
+					easy to read, understand, clear, well-structured, straightforward to implement, straight forward to test
+			value:
+				business analysts should understand it
+				and maximize it
+Who performs Business Analysis:
+	Business Analysts
+		Obvious one
+	Product Managers
+		Product Managers are responsible for designing, developing, and managing products for companies.
+		They have specialized requirement document types that are suited to specific needs like market requirement document, product requirement documents.
+	Product Owners
+		The role of product owner comes from the world Agile development
+		product owners are the business person on agile projects
+		they manage the list of requirements, prioritize requirements, provide input to the development team on features, and perform other business related tasks
+	Technologists
+		When a project lacks a dedicated BA, sometimes the technologists will perform business analysis.
+	Just about anyone else
+		can be a specialist, domain expert, strategist, etc etc..
+	Who else are involved
+		stakeholders providing requirements to you
+		this can be done in interviews or workshops or simple phone calls
+		these stakeholder play CRITICAL role
+		stakeholders reviewing the requirements you've written
+		these stakeholders usually represent a wide array of roles and expertise
+		their role is to validate the requirements that have been collected and documented so far
+	Quiz:
+		True/False: Only people with the job title of Business Analyst are allowed to do business analysis work.
+			Fales
+		True/False: Stakeholders are very important to the business analysis process.
+			True
+The Business Analyst Role:
+	Our mission:
+		to effect postive change for our companies and customers
+		we dont just write requirements
+		we are problem solvers
+	Quiz:
+		Imagine you are starting a new role as a Business Analyst on an agile team. They tell you that they don’t document detailed requirement specifications, instead relying on conversations among team members. What is the right approach for you to have?
+			That's ok and it will save some work. I am a problem solver and not just requirements author.
+Overview of Stakeholders:
+	Stakeholders are someone who gets impacted by your requirements in any way.
+	Manage your upstream and downstream
+		Upstream
+			Everyone you depend on to deliver the project
+		Downstream
+			Everyone that depends on the product you create
+Project Managers:
+	Each project will have a PM
+	They are responsible for executing the project within constraints:
+		Budget
+		Schedule
+		Quality
+		Scope
+	BAs often become PM later in their career
+	BAs often serve as the PM in their projects
+	The Typical project manager is:
+		Goal oriented
+		Task Oriented
+		and deadline Oriented
+		(and often kind of pushy)
+	They are not typically expert in the organization
+	They are typically experts in getting things done
+	Typical PM problems:
+		Constraint related
+			A workstream is running late
+			unidentified work cropping up
+			budget overflows
+		Miscellaneous
+			pain in the butt stakeholder
+			new requirements late in the project
+			lots of team conflict
+		Worst
+			when the project gets out of control
+	How can you help PM?
+		Manage your business analysis work effectively on time
+		keep them up to speed with your issues and risks
+	Quiz:
+		Why is the Project Manager an important requirements stakeholder?
+			the pm is responsible for the project and requirements are essential to successful delivery
+			if requirements are either early or late, this can impact the projects schedule
+			if requirements are poorer the quality will suffer
+Developers:
+	Someone who builds the product as per the requirement.
+	Typical developer problems:
+		need for technical expertise
+		interruptions
+		requirement change
+	How you can help them:
+		Provide them with fantastic requirements
+		keep them aware of potential changes to requirements
+		interrupt them as rarely as possible
+		meet with them at the begining/end of the day
+QA/Tester:
+	The role of the tester is to make sure product is of high quality
+	Typical tester problems:
+		they are often engaged later in the project than they should be
+		lots of defects
+		testing phase of the project is often squeezed
+		worst: the product is of low quality
+	How you can help them:
+		engage them early in the project
+		make sure developers are communicating with testers
+		make product quality high priority
+		spend time to understand their work
+Management:
+	Manager:
+	Your manager is impacted by the work you do.
+	Your manager is judged by the quality of work you do.
+	sometimes you'l need to consider your manager's manager
+	and the same goes for your project team's managers
+	Typical manager problem:
+		managing up(her management) and down (her reportees)
+		developing a track record of success for the team
+		worst: when one of their team's project blows up
+	How you can help them:
+		doing your job effectively
+		keep them aware of your problems issues risks and successes
+		try to never surprise them
+		get to know the bosses of your project team too
+	Project Sponsor:
+		business owner of the project
+		usually very senior in the organization
+		Typical sponsor problems:
+			The problem your project is trying to solve
+			worst: the project failed/delayed and the product is lousy
+		How you can help them:
+			conduct analysis with high quality and on time.
+			communicate effectively
+			work to make sure the product meets the goal
+Frontline:
+	Customers - They pay for the product
+		Consumer customers
+		Institutional customers (B2B)
+			They share lot of useful insights
+	Internal Users -
+			they need highly usable systems
+				include them during requirement gathering
+				ask lot of questions
+Stakeholders conflict:
+	Categories
+		Internal-Internal
+			perform stakeholder need analysis
+				what do each party wants
+				why do they want
+				what is the priority of the need in the mind of stakeholder
+				what are stakeholder assumption
+			negotiation time
+			this is not about being right or wrong, its about finding solutions
+		Internal-External
+			perform stakeholder need analysis
+			be the voice of customer
+			rely on numnbers not opinions
+			involve your pm if requried
+		External-External
+			Perform stakeholder need analysis
+Project Life Cycle & Systems Developement Life Cycle:
+	PLC: Initiation, Planning, Execution-Control, Closing
+	SDLC: Analysis, Design, Development, Testing, Implementation
+
+Waterfall vs Iteration:
+	Waterfall:
+		business requirement  										project acceptance
+			user requirement  										user acceptance testing
+				functional requirement 								qa/functional testing
+					technical design								integration testing
+						Developement 								Unit Testing
+
+	Iterative:
+		business requirement
+			user requirement
+				functional requirement
+					techincal design
+						dev
+							test
+								dev
+									test
+										dev
+											test
+												implementation
+
+Agile:
+	A flexible, customer-aligned approach to developing products
+	Agile Manifesto:
+		Individuals and interactions over processes and tools
+		Working software over comprhensive documentation
+		Customer collaboration over contract negotiation
+		Responding to change over following a plan
+	Terms:
+		Sprint:
+			1 to 4 weeks period of time in which the team creates a new, customer-ready version of the product
+		Phases:
+			Sprint Planning
+				Daily Sprint Meeting
+					Sprint Review
+						Sprint Retrospective
+		Roles:
+			Team Members
+				Design, Develop, Test the product
+				Decide what work they will do
+				Estimate the workload of each requirement
+			Product Owner
+				Business Owner
+				Mainatins prioritized wish list of the requirements
+			Scrum Master
+				Helps the team overcome issues
+				Runs meetings, and oversees scrum process
+		Business Analysts can be part of Team Members or act as a Product Owner
+
+User Stories:
+	Format:
+		As a
+		I want a
+		So that
+	Example:
+		As a market analyst
+		I want a chart showing web page traffic over time
+		So I can guage how effective content changes are
+
+Acceptance Criteria:
+	User Story:
+		As a blogger
+		I want to be able to apply HTML styling to my bog posts
+		So I can adequately structure my content
+	Acceptance Criteria:
+		User can italicize, bold, and underline text
+		User can create numbered and bulleted lists
+		User can indent and unindent text
+		User can change the fotn to any of the following:
+			Arial, Helvetica, Times New Roman
+Epics:
+	User stories are too big to effectively complete in a single point. A user story typicall comprises no more than 1/6 th of team's velocity
+	instead of working on epics directly, the team splits them into user stories.
+	here are strategies to split epics to stories:
+		fucntional decomposition
+		process decomposition
+		structural decomposition
+
+	Example Epics and Stories:
+		Blogging
+			Author Blog post
+			Edit Blog post
+			Publish Blog post
+		Bank Account Opening
+			Choose account type
+			submit identification documents
+			request debit card
+		Marketing dashboard
+			site traffic chart
+			social media summary
+			email metrics table
+Product Life Cycle:
+	Ideation
+	Development
+	Mature
+	Retirement
+Requirement Life Cycle:
+	drafted
+	validated
+	baselined
+	implemented
+	managed
+	retired
+Critical part of the requirement
+	Description
+	Source
+	Rational
+Attributes of Good requirement:
+	Clear
+		peer review and make them state the requirement without ambiguity
+		walthrough with all stakeholders
+	Complete
+		peer review and make them state the requirement without ambiguity
+		walthrough with all stakeholders
+	Applicable
+		requirement should be applicable to the solution recommended
+	Prioritized
+		requirement is prioritzed by the sponsor
+	Implementable
+		requirement can be tangibly realized by the code
+		requirement is feasible
+	Testable
+		can be tested/converted to a test case
+Business Requirement
+	Req ID
+	Requirement
+	Rational
+	Source
+User Requirement
+	Req ID
+	Requirement
+	Rational
+	Source
+	Parent (Business Requirement ID)
+Functional Requirement
+	functionality of user requirement
+	Req ID
+	Requirement
+	Rational
+	Source
+	Parent (User Requirement ID)
+Non Functional Requirement
+	Describe QUALITIES required of the System
+		Data Privacy
+		Security
+		Disaster Recovery
+		Performance
+		Availability
+		Legal/Compliance
+		Usability
+	Req ID
+	Category
+	Requirement
+	Rationale
+	Source
+	Parent
+
+Type:
+	Business
+		Reduce incorrectly processed orders by 50% by the end of next quarter
+		Increase repeat orders from customer by 10% within siz months after deployment
+	User/Stakeholder
+		add new customer account
+		view order history
+		check order status
+		create new order
+	Functional/Solution
+		display customer last name as a link to account history
+		allow sorting by account opening date
+	Non-Functional
+		allow up to 200 concurrent users
+		require strong passwords of at least 8 characters in length containing a minimum of one non-alphabet character
+	Implementation/Transition
+		must run on all java platforms including 64 bit versions
+		users must pass an online certification before being allowed to use the system
+
+Requirement Sources:
+	Stakeholders
+	Preexisting requirement docs
+	Standards documentation
+
+1-on-1 interviewing
+	Elicitation skills are key to BA
+		problems:
+			communication is imprecise
+			stakeholders dont know what they need
+		Tips:
+			approach project sponsor first
+			ask open ended questions
+			give 80% time to stakeholder to express
+			reconfirm your understanding
+Group interviewing
+	problems:
+		some dont tend to open in group
+		there will be bias on one person's opinion
+	Tips:
+		plan to take colleague to take notes
+		make an agenda
+		try to make it a group meeting and not conference call
+		ask open ended question
+		note taker should record question, answer, source, rationale
+		get the interviewee's rationale if not offered
+		keep the group on track
+		get everyone to talk
+Documents
+	Vision & Scope
+		http://www.exinfm.com/training/M2C3/vision_and_scope.doc
+	Software requirement specification template
+		http://www.exinfm.com/training/M2C3/srs_template.doc
+	Business Requirement Document
+	Functional Requirement Document
+Agile Requirement
+	Just enough documentation
+		User Stories:
+			Role
+				As a blogger
+			Requirement
+				I want to format blogs using HTML
+			Rationale
+				So I can structure and format my posts effectively
+		Acceptance Criteria
+			I can apply bold, italic, and/or underlining to text
+			I can use the keyboard shortcuts for the above
+			I can create bulleted and numbered lists
+			I can switch back and forth between text view and HTML view
+		Epics
+			An User story shouldnt be more than 1/6th of the sprint
+			User stories are typically stated as Epics
+				Blogging Functionality
+				Email Integration
+				Reporting
+				.. all need to be decomposed..
+		Product Backlog
+			running list of all requirements
+			mantained by product owner
+		Sprint Backlog
+			running list of requirements to be delivered during the sprint
+			mantained by team
+Transform
+	Analysis
+		all the mental techniques used to break down the information we get from stakeholders
+	Modelling
+		devising representations of problems,solutions,processes,organizations,etc that aid in understanding
+Analysis Techniques
+	Thinking about stuff
+	Decomposition Analysis
+		BR - System will enable a user to create summary reports of all beverages sold monthly
+			Decomposition:
+				Data related details
+					columns,rows,head,footer
+				timing and delivery of the report
+				Presentation related details
+		In Agile, breaking down big epic stories to user stories
+	Additive/Subtractive Analysis
+		adding a component to see its impact
+		removeing a component to see its impact
+	Gap Analysis
+		a component wise analysis of a complex to understand its difference from another complex
+			current state and future state
+				sell sporting goods only -- diversified product line
+					possible course of action
+						develop new product
+						buy another company
+				volatile revenues -- smoother revenues
+					possible course of action
+						develop new product
+						buy another company
+						increase sales effort during slow time
+				revenues=$2 billion/year -- $3 billion/year
+					possible course of action
+						develop new product
+						buy another company
+						increase sales effort
+	Decision Analysis
+		determining which decision to make
+		developing analytical models to make decision
+		example: where to go for dinner
+			not a good way to run a business
+				don't make any decision
+				do what you did in the past
+				select randomly
+				get a recommendation (okay, but expensive)
+		example: replace CRM
+			what are the options
+				A decision tree
+					replace CRM
+						No System
+						New System
+							Build it
+							Buy it
+							Steal it
+				Weighted Decision System
+					Give weights to each feature
+					Give ratings to each feature for each option
+					multiply weights and rating
+					take total count for each option
+					take a call which option to go with that has high count
+	Root cause Analysis
+		Five Whys (will give single root cause, may be good or may not)
+			problem:
+				Our company is loosing money
+			5 Whys:
+				expenses are higher than revenues
+					costs have increased 40% this year
+						marketing expenses have tripled
+							expensive CRM vendor
+								CRM system hasn't paid for itself
+		Ishikawa Diagram
+			fish bone diagram
+				problem
+					categories (men/machine,material,method,mother nature,measurement)
+						causes
+		DMAIC
+			define the problem
+			quantify the problem
+			analyse the problem
+			implement solution
+			mantain the solution
+		Stakeholder Analysis
+			this will help to addrress stakeholder conflicts
+				ask four questions to each stakeholder where there is conflict
+					what do they say they want
+					why
+					what is the priority in their mind
+					what are their assumptions
+		Modelling
+			Illustrative - Prototype
+			Predictive - Process Diagram
+			General Purpose - Flowchart
+
+			Flowchart:
+				rectangular -step in the process
+				diamond - decision point
+				dot (big one filled with colour) - start
+				dot with circle around (only dot is filled with colour) - finish
+				arrow - connector
+			Swimlane/Cross-functional flowchart
+				when multiple actors are part of process
+				each swimlane depicts an actor
+			Entity-Relationship model
+				entity - rectangle
+				relationship - diamond
+				attribute- oval
+				cordinality - quanitifying the relationship (m,n,1)
+				example:
+					entity
+						company, student, course, employee
+					relationship
+						has, studies, teaches
+					attribute
+						name, location, taxid
+					cordinality
+						m,n,1
+			State-Tranisition Modelling
+				used to explain states of tranisition
+					state = status
+					circle - used for state
+					arrow -used for tranisition
+					dark dot - start
+					dark dot with circle around - finish
+				Example:
+					start - switch is off - turn on - switch is on - finish
+			Data flow diagram
+				depicts how data flow from one state to another
+					circle - depicts process
+					parallel bar - depicts data store
+					arrow - depicts flow
+					rectangle - depicts input/output
+					Example:
+						linkedin data flow
+							user - input
+							enters data, updates data - process
+							linkedin system - data store
+							import data, transform data - process
+							word doc- data store
+							user info, file data, file info - flow
+						rule:
+							label everything
+			use case diagram
+				to depict user and system interaction
+				textual use case:
+					use case id
+					title
+					description
+					pre conditions
+					post conditions
+					actors
+					basic flow
+					alternate flow
+				visual use case:
+					square (boundaries)
+					ovals (use case)
+					actors (users)
+			Business Process Modelling
+				business process is a series of activities repeatedly and uniformly executed  by an organization to achieve some goals
+				examples:
+					opening a customer account
+					accepting a customer deposit
+					mailing an account statement
+				not business process examples:
+					reviewing email (as this is personal)
+					conducting meeting (as there is no one way to conduct)
+					entering data into system (as it is too small to be considered as process)
+				reasons to model:
+					new process
+					process improve
+					process reengineering
+				theree big goals
+					reduce cost
+					reduce cycle time
+					imporove quality
+				components
+					actors (people and systems)
+					activities (steps in the business process)
+					tools (equipment and other objects)
+					information (data - electronic-non)
+
+				Opening a bank account:
+					Actors: bank teller, customer, back office, system
+					Activities:
+						customer requests new account
+						teller determines type of account
+						teller determines documentation required
+						customer gives documentation
+						teller creates account
+						customer gives deposit
+						teller gives temporary debit card
+						teller files documentation
+						back office mails regular debit card
+					Tools:
+						documentation checklist, customer file, file cabinet, temporary debit card, regular debit card
+					Information:
+						customer documentation, temporary debit card
+
+			UMN
+				Unified modelling and notation, business process modelling and notation
+				UML is used for object oriented analysis and design
+					class diagram
+					sequence diagram
+					state transition diagram
+					use case diagram
+
+Finalization of Requirements:
+	Stakeholders are bought into the solution (Socialization)
+	the requirements are complete and of high quality (presentation)
+	we have baselined the requirements (change control)
+	Socializing the requirements:
+		tricky stakeholders
+		boss
+		key stakeholders
+	Presenting the requirements:
+		process:
+			setup meeting
+			send documentation week in advance
+			present the document
+			reshare document with changes
+			followup with approval
+		technique:
+			detailed on business requirement
+			summarize user/functional/non functional requirement
+			picutres:
+				only present flowchart, swimlane chart, use case diagram
+				dont present other ones like umn, bpmn, state transition
+		questions to stakeholders:
+			any thing major wrong/missing
+			any one else need to approve the requirement other than listed
+			any concerns over date of approval
+		change control
+			ask your manager and project manager on who can be the approver for changes and get it approved from project sponsor
+			get approval through email and store it in pdf format in a centralized location
+			process:
+				draft a change request
+				manager reviews it
+				send for approval
+				if approved update requirements & communicate change
+
+
+
+
+Data Engineering Coach:
+Installing
+	install virtual box from virtualbox.org
+	install sandbox HDP virtual box, a 11GB file 2.5.0 version from cloudera.com/downloads/hortonworks.sandbox/hdp.html
+	open virtual box
+	open sandbox
+Executing first job
+	download ml-100k.zip dataset, a movie rating dataset for old movies from grouplens.org/datasets/movielens/
+	refer files u.data (has userid,movieid,rating,timestamp) and u.item (has movieid,name)
+	open browser and enter 127.0.0.1:8888 as shown on sandbox
+	open ambari using 127.0.0.1:8080 and credentials:maria_dev/maria_dev
+	open Hive and select Query section
+	task: find highest rated movie
+	steps:
+		goto Upload Table section, from settings icon select delimitter and upload file
+		goto Query section and execute:
+				SELECT movie_id,count(movie_id) as ratingCount
+				FROM ratings
+				GROUP BY movie_id
+				ORDER BY ratingCount
+				DESC;
+				select name from movie_names where movie_id=50;
+Hadoop:
+	An open source software platform built for distributed storage and distributed processing of very large datasets on computer cluster built from commodity hardware
+	Google published GFS - Google file system and MapReduce the processing framework in 2003-2004, this was copied by Yahoo for its 'nutch' search engine project. Dough cutting who was part of this team, built Hadoop in 2006 and named it so after his kid's yellow toy elephant.
+	Why Hadoop?
+		big data, easy horizontal linear expanision of hardware
+Hadoop Ecosystem:
+	Core Hadoop:
+		Ambari: hosts all of the hadoop technologies
+			pig-programming language to deal with hadoop
+			hive-sql query system
+			mapreduce-parallel processing system
+			tez-alternate to maperduce
+			spark-alternate to mapreduce
+				scala-programming lang for spark
+			yarn-yet another resource negotiator - manages resources
+			mesos-alternate to yarn
+			hdfs-hadoop data file system (storing data parallely)
+			hbase-no sql system
+			apache storm - to host streaming data
+			data ingestion:
+				scoop-for rdms
+				flume-for weblogs
+				kafka-streaming
+			oozie-for scheduling
+			zookeeper-for tracking
+	external databases:
+		mysql
+		mongodb
+		cassendra
+	query engines:
+		hue
+		presto
+		apache phoenix
+		apache drill
+		apache zappeline
+HDFS:
+	to handle bigfiles
+		breaks into blocks with 128 mb size, with each block stored across computers.
+	HDFS Architecture includes: name node, data node
+	reading files involves: client node -> name node -> client node ->data node  ->client node -> data node
+	writing files invovles: client node -> name ndoe -> client node -> data node -> data node ->client node ->name node
+	even name nodes should be backed up
+	only one name node should be used at one time
+	HDFS can be accessed via ui(ambari),cli,java interface, nfs (mounting),http or hdfs
+	Accessing HDFS through UI:
+		login to ambari
+		click on hdfs
+		click on file view
+		click on user
+		select maria_dev
+		create directory "ml-100k" and upload file from local u.data/u.item
+	Accessing HDFS through cli:
+		open cli
+		ssh maria_dev@127.0.0.1 -p 2222
+		$hadoop fs -ls
+		$hadoop fs -mkdir ml-100k
+		$wget http://media.sundog-soft.com/hadoop/ml-100k/u.data
+		$hadoop fs -copyFromLocal u.data ml-100k/u.data
+		$hadoop fs -ls ml-100k/
+		$hadoop fs -rm ml-100k/
+		$hadoop fs -rmdir ml-100k/
+MAPREDUCE:
+	mapper to map key:value
+	mapreducer takes care of sort and shuffle
+	reducer does aggregation
+	example:
+		user_id,movie_id
+		10,121
+		11,122
+		12,123
+		10,122
+		11,123
+
+		mapper: 10:121 10:122 11:122 11:123 12:123
+		sort n shuffle: 10:121,122 11:122,123 12:123
+		reducer (count): 10:2 11:2 12:1
+	install mapreduce using yum install pip, pip install mrjob
+	problem: find aggregate count of each rating for data in u.data
+	from mrjob.job import MRJob
+	from mrjob.step import MRStep
+	class RatingsBreakDown(MRJob):
+		def steps(self):
+			return[
+					MRStep(mapper=self.mapper_get_ratings,
+							reducer=self.reducer_count_rating)
+				  ]
+		def mapper_get_ratings(self,_,line):
+			(userID,movieID,rating,timestamp)=line.split('\t')
+			yield rating,1
+		def reduceer_count_rating(self,key,values):
+			yield key,sum(values)
+	if __name__='__main__':
+		RatingsBreakDown.run()
+
+	run the above program from cli on u.data file
+		$python RatingsBreakDown.py u.data
+		No configs found; falling back on auto-configuration
+		Creating temp directory /tmp/RatingsBreakdown.maria_dev.20190619.094104.067250
+		Running step 1 of 1...
+		Streaming final output from /tmp/RatingsBreakdown.maria_dev.20190619.094104.067250/output...
+		"1"	6111
+		"2"	11370
+		"3"	27145
+		"4"	34174
+		"5"	21203
+		Removing temp directory /tmp/RatingsBreakdown.maria_dev.20190619.094104.067250...
+
+	run the above program using Hadoop
+		$python RatingsBreakDown.py hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar u.data
+			No configs found; falling back on auto-configuration
+			Looking for hadoop binary in $PATH...
+			Found hadoop binary: /usr/bin/hadoop
+			Using Hadoop version 2.7.3.2.5.0.0
+			Creating temp directory /tmp/RatingsBreakdown.maria_dev.20190619.094833.292076
+			Copying local files to hdfs:///user/maria_dev/tmp/mrjob/RatingsBreakdown.maria_dev.20190619.094833.292076/files/...
+			Running step 1 of 1...
+			packageJobJar: [] [/usr/hdp/2.5.0.0-1245/hadoop-mapreduce/hadoop-streaming-2.7.3.2.5.0.0-1245.jar] /tmp/streamjob4998430100483077682.jar tmpDir=null
+			Timeline service address: http://sandbox.hortonworks.com:8188/ws/v1/timeline/
+			Connecting to ResourceManager at sandbox.hortonworks.com/172.17.0.2:8050
+			Connecting to Application History server at sandbox.hortonworks.com/172.17.0.2:10200
+			Timeline service address: http://sandbox.hortonworks.com:8188/ws/v1/timeline/
+			Connecting to ResourceManager at sandbox.hortonworks.com/172.17.0.2:8050
+			Connecting to Application History server at sandbox.hortonworks.com/172.17.0.2:10200
+			Loaded native gpl library
+			Successfully loaded & initialized native-lzo library [hadoop-lzo rev 7a4b57bedce694048432dd5bf5b90a6c8ccdba80]
+			Total input paths to process : 1
+			number of splits:2
+			Submitting tokens for job: job_1560934020377_0001
+			Submitted application application_1560934020377_0001
+			The url to track the job: http://sandbox.hortonworks.com:8088/proxy/application_1560934020377_0001/
+			Running job: job_1560934020377_0001
+			Job job_1560934020377_0001 running in uber mode : false
+			map 0% reduce 0%
+			map 100% reduce 0%
+			map 100% reduce 100%
+			Job job_1560934020377_0001 completed successfully
+			Output directory: hdfs:///user/maria_dev/tmp/mrjob/RatingsBreakdown.maria_dev.20190619.094833.292076/output
+			Counters: 49
+			File Input Format Counters
+				Bytes Read=2088191
+			File Output Format Counters
+				Bytes Written=49
+			File System Counters
+				FILE: Number of bytes read=800030
+				FILE: Number of bytes written=2046612
+				FILE: Number of large read operations=0
+				FILE: Number of read operations=0
+				FILE: Number of write operations=0
+				HDFS: Number of bytes read=2088541
+				HDFS: Number of bytes written=49
+				HDFS: Number of large read operations=0
+				HDFS: Number of read operations=9
+				HDFS: Number of write operations=2
+			Job Counters
+				Data-local map tasks=2
+				Launched map tasks=2
+				Launched reduce tasks=1
+				Total megabyte-milliseconds taken by all map tasks=3697500
+				Total megabyte-milliseconds taken by all reduce tasks=1141750
+				Total time spent by all map tasks (ms)=14790
+				Total time spent by all maps in occupied slots (ms)=14790
+				Total time spent by all reduce tasks (ms)=4567
+				Total time spent by all reduces in occupied slots (ms)=4567
+				Total vcore-milliseconds taken by all map tasks=14790
+				Total vcore-milliseconds taken by all reduce tasks=4567
+			Map-Reduce Framework
+				CPU time spent (ms)=4580
+				Combine input records=0
+				Combine output records=0
+				Failed Shuffles=0
+				GC time elapsed (ms)=402
+				Input split bytes=350
+				Map input records=100003
+				Map output bytes=600018
+				Map output materialized bytes=800036
+				Map output records=100003
+				Merged Map outputs=2
+				Physical memory (bytes) snapshot=513273856
+				Reduce input groups=5
+				Reduce input records=100003
+				Reduce output records=5
+				Reduce shuffle bytes=800036
+				Shuffled Maps =2
+				Spilled Records=200006
+				Total committed heap usage (bytes)=262144000
+				Virtual memory (bytes) snapshot=5828038656
+			Shuffle Errors
+				BAD_ID=0
+				CONNECTION=0
+				IO_ERROR=0
+				WRONG_LENGTH=0
+				WRONG_MAP=0
+				WRONG_REDUCE=0
+			Streaming final output from hdfs:///user/maria_dev/tmp/mrjob/RatingsBreakdown.maria_dev.20190619.094833.292076/output...
+			"1"	6111
+			"2"	11370
+			"3"	27145
+			"4"	34174
+			"5"	21203
+			Removing HDFS temp directory hdfs:///user/maria_dev/tmp/mrjob/RatingsBreakdown.maria_dev.20190619.094833.292076...
+			Removing temp directory /tmp/RatingsBreakdown.maria_dev.20190619.094833.292076...
+	for getting Rating wise movie ranking:
+		from mrjob.job import MRJob
+		from mrjob.step import MRStep
+		class MovieSortByRatingCount(MRJob):
+			def steps(self):
+				return[
+						MRStep(mapper=self.mapper_get_ratings,
+								reducer=self.reducer_count_ratings),
+						MRStep(reducer=self.reducer_sorted_output)
+					]
+			def mapper_get_ratings(self,_,line):
+				(userID,movieID,rating,timestamp)=line.split('\t')
+				yield movieID,1
+			def reducer_count_ratings(self,key,values):
+				yield str(sum(values)).zfill(5),key
+			def reducer_sorted_output(self,count,movies):
+				for movie in movies:
+					yield movie,count
+
+		if __name__='__main__':
+			MovieSortByRatingCount.run()
+Ambari:
+	login to 127.0.0.1:8080 to access ambari
+	to get admin access
+	from cli
+	$su root
+	$password: Password123
+	$ambari-admin-password-reset
+	$enter password: admin
+	login to 127.0.0.1:8080 with admin/admin to access admin privelages.
+Pig:
+	common commands:
+		LOAD, STORE, DUMP
+			- STORE ratings INTO 'outRatings' USING PigStorage(':');
+		FILTER, DISTINCT, FOREACH/GENERATE, MAPREDUCE, STREAM, SAMPLE
+		JOIN COGROUP GROUP CROSS CUBE
+		ORDER RANK LIMIT
+		UNION SPLIT
+	Diagnostics:
+		DESCRIBE EXPLAIN ILLUSTRATE
+	UDF (user defined functions)
+		REGISTER DEFINE IMPORT
+	Some other functions and loaders
+		AVG CONCAT COUNT MAX MIN SIZE SUM
+		PigStorage, TextLoader, JsonLoader, AvroStorage, ParquetLoader, AvroStorage, ParquetLoader, OrcStorage, HBaseStorage
+
+	sample pig script:
+		ratings=LOAD '/user/maria_dev/ml-100k/u.data' AS (userID:int,movieID:int,rating:int,ratingTime:int);
+		metadata=LOAD '/user/maria_dev/ml-100k/u.item' USING PigStorage('|') AS (movieID:int,movieTitle:chararray,releaseDate:chararray,videoRelease:chararray,imdblink:chararrary);
+		nameLookup=FOREACH metadata GENERATE movieID,movieTitle,ToUnixTime(ToDate(releaseDate,'dd-MMM-yyyy')) AS releaseTime;
+		ratingsByMovie=GROUP ratings BY movieID;
+		avgRatings=FOREACH ratingsByMovie GENERATE group as movieID,AVG(ratings.rating) as avgRating;
+		fiveStarMovies=FILTER avgRatings BY avgRating>4.0;
+		fiveStarsWithData=JOIN fiveStarMovies BY movieID,nameLookup BY movieID;
+		oldestFiveStarMovies=ORDER fiveStarsWithData BY nameLookup::releaseTime;
+		DUMP oldestFiveStarMovies;
+
+Spark:
+	100x faster than HADOPP in doing in memory tasks and 10x faster when done in hard disk
+	can work in hadoop ecosystem with yarn or use its own resource negotiator messos
+	can script in python, java, scala
+	its buitl on RDD (resilient distributed datanet)
+	Spark Core consists of:
+		Sparkstreaming - to work on streaming data
+		SparkSQL - for querying
+		MLLib -  Machine Learning Library
+		Graphx - Graph computation
+	RDD:
+		The spark context:
+			Created by your driver program
+			is responsible for making RDD's resilient and distributed
+			creates RDDs
+			the spark shell creates a 'sc' object for you
+		creating RDD's:
+			nums=parallelize([1,2,3,4])
+			sc.textFile("file://user/xyz/text.txt")
+			- of s3n:// , hdfs://
+			hiveCtx=HiveContext(sc) rows =hiveCtx.sql('SELECT name from users')
+			can also create from:
+				JDBC, Cassandra, HBase, Elasticsearch, JSON, CSV, sequence files, object files, various component formats.
+		Transforming RDDs:
+			map
+			flatmap
+			filter
+			distinct
+			sample
+			union, intersection, subtract, cartesian
+		map example:
+			rdd=sc.parallelize([1,2,3,4])
+			squaredRDD=rdd.map(lambda x:x*x)
+			This yields 1,4,9,16
+		RDD actions: (Nothing happens in your driver program until an action is called)
+			collect
+			count
+			countByValue
+			take
+			top
+			reduce
+	sample spark script:
+		$ssh maria_dev@127.0.0.1 -p 2222
+		$mkdir ml-100k
+		$cd ml-100k/
+		$ wget http://media.sundog-soft.com/hadoop/ml-100k/u.item
+		$ cd ..
+		$ wget http://media.sundog-soft.com/hadoop/Spark.zip
+		$ unzip Spark.zip
+		$ less LowestRatedMovieSpark.py
+			from pyspark import SparkConf, SparkContext
+
+			# This function just creates a Python "dictionary" we can later
+			# use to convert movie ID's to movie names while printing out
+			# the final results.
+			def loadMovieNames():
+			    movieNames = {}
+			    with open("ml-100k/u.item") as f:
+			        for line in f:
+			            fields = line.split('|')
+			            movieNames[int(fields[0])] = fields[1]
+			    return movieNames
+
+			# Take each line of u.data and convert it to (movieID, (rating, 1.0))
+			# This way we can then add up all the ratings for each movie, and
+			# the total number of ratings for each movie (which lets us compute the average)
+			def parseInput(line):
+			    fields = line.split()
+			    return (int(fields[1]), (float(fields[2]), 1.0))
+
+			if __name__ == "__main__":
+			    # The main script - create our SparkContext
+			    conf = SparkConf().setAppName("WorstMovies")
+			    sc = SparkContext(conf = conf)
+
+			    # Load up our movie ID -> movie name lookup table
+			    movieNames = loadMovieNames()
+
+			    # Load up the raw u.data file
+			    lines = sc.textFile("hdfs:///user/maria_dev/ml-100k/u.data")
+
+			    # Convert to (movieID, (rating, 1.0))
+			    movieRatings = lines.map(parseInput)
+
+			    # Reduce to (movieID, (sumOfRatings, totalRatings))
+			    ratingTotalsAndCount = movieRatings.reduceByKey(lambda movie1, movie2: ( movie1[0] + movie2[0], movie1[1] + movie2[1] ) )
+
+			    # Map to (rating, averageRating)
+			    averageRatings = ratingTotalsAndCount.mapValues(lambda totalAndCount : totalAndCount[0] / totalAndCount[1])
+
+			    # Sort by average rating
+			    sortedMovies = averageRatings.sortBy(lambda x: x[1])
+
+			    # Take the top 10 results
+			    results = sortedMovies.take(10)
+
+			    # Print them out:
+			    for result in results:
+			        print(movieNames[result[0]], result[1])
+
+		To run the script:
+			$ spark-submit LowestRatedMovieSpark.py
+				Multiple versions of Spark are installed but SPARK_MAJOR_VERSION is not set
+				Spark1 will be picked by default
+				('3 Ninjas: High Noon At Mega Mountain (1998)', 1.0)
+				('Beyond Bedlam (1993)', 1.0)
+				('Power 98 (1995)', 1.0)
+				('Bloody Child, The (1996)', 1.0)
+				('Amityville: Dollhouse (1996)', 1.0)
+				('Babyfever (1994)', 1.0)
+				('Homage (1995)', 1.0)
+				('Somebody to Love (1994)', 1.0)
+				('Crude Oasis, The (1995)', 1.0)
+				('Every Other Weekend (1990)', 1.0)
+				[maria_dev@sandbox ~]$ less LowestRatedMovieSpark.py
+
+	SPARK 2 lowest rated movie finding:
+    	from pyspark.sql import SparkSession
+    	from pyspark.sql import Row
+    	from pyspark.sql import functions
+
+    	def loadMovieNames():
+    		movieNames={}
+    		with open("ml-100k/u.item") as f:
+    			for line in f:
+    				fields=line.split('|')
+    				movieNames[int(fields[0])]=fields[1]
+    			return movieNames
+
+    	def parseInput(line):
+    		fields=lin.split()
+    		return Row(movieID=int(fields[1],rating=float(fields[2])))
+    	if __name__="__main__":
+    		#Create a SparkSession (the config bit is only for Windows!)
+    		spark=SparkSession.builder.appName("PopularMovies").getOrCreate()
+
+    		#Load up out movie ID -> name Directory
+    		movieNames=loadMovieNames()
+
+    		#Get the raw data
+    		lines=spark.sparkContext.textFile("hdfs:///user/maria_dev/ml-100k/u.data")
+
+    		#Convert it to a RDD of row objects with (movieID,rating)
+    		movies=lines.map(parseInput)
+
+    		#Convert that to a Dataframe
+    		movieDataset=spark.createDataFrame(movies)
+
+    		#Compute average rating for each movieID
+    		counts=movieDataset.groupBy("movieID").count()
+
+    		#Join the two together (We now have movieID, avg(rating),and count columns)
+    		averagesAndCounts=counts.join(averageRatings,"movieID")
+
+    		#pull the top 10 results
+    		topTen=averagesAndCounts.orderBy("avg(rating)").take(10)
+
+    		#print them out, converting movie ID's to names as we go
+    		for movie in topTen:
+    			print(movieNames[movie[0]],movie[1],movie[2])
+
+    		#Stop the session
+    		spark.stop()
+    To run the script:
+    	$export SPARK_MAJOR_VERSION=2
+    	$spark-submit LowestRatedMovieDataFrame.py
+
+    Results:
+	    ('Further Gesture, A (1996)', 1, 1.0)
+		('Falling in Love Again (1980)', 2, 1.0)
+		('Amityville: Dollhouse (1996)', 3, 1.0)
+		('Power 98 (1995)', 1, 1.0)
+		('Low Life, The (1994)', 1, 1.0)
+		('Careful (1992)', 1, 1.0)
+		('Lotto Land (1995)', 1, 1.0)
+		('Hostile Intentions (1994)', 1, 1.0)
+		('Amityville: A New Generation (1993)', 5, 1.0)
+		('Touki Bouki (Journey of the Hyena) (1973)', 1, 1.0)
+
+    SPARK2 and MLLIB: Movie Recommendation
+    	from pyspark.sql import SparkSession
+    	from pyspark.ml.recommendation import ALS
+    	from pyspark.sql import Row
+    	from pyspark.sql.functions import lit
+
+    	#load up movie ID-> movie name directory
+    	def loadMovieNames():
+    		movieNames={}
+    		with open("ml-100k/u.item") as f:
+    			for line in f:
+    				fields=line.split("|")
+    				movieNames[int(fields[0])]=fields[1].decode('ascii','ignore')
+    		return movieNames
+    	#Convert u.data lines into (userID,movieID,rating) rows
+    	def parseIput(line):
+    		fields=line.value.split()
+    		return Row(userID=int(fields[0],movieID=int(fields[1]),rating=float(fields[2])))
+
+    	if__name__='__main__':
+    		#Create a SparkSession (the config bit is only for Windows!)
+    		spark=SparkSession.builder.appName("MovieRecs").getOrCreate()
+    		#Load up out movie ID-> name dictionary
+    		movieNames=loadMovieNames()
+    		#Get the raw data
+    		lines=spark.read.text("hdfs:///user/maria_dev/ml-100k/u.data").rdd
+    		#Convert it to a RDD of Row objects with (userID,movieID,rating)
+    		ratingsRDD=lines.map(parseInput)
+    		#convert to a DataFrame and cache it
+    		ratings=spark.createDataFrame(ratingsRDD).cache()
+    		#Create an ALS collaborative filtering model from the complete dataset
+    		als=ALS(maxIter=5,regParam=0.01,userCol="userID",itemCol="movieID",ratingCol="rating")
+    		model=als.fit(ratings)
+    		#print out ratings from user 0:
+    		print "\nRatings for user id 0"
+    		userRating=ratings.filter("userID=0")
+    		for rating in userRatings.collect():
+    			print movieNames[rating['movieID']],rating['rating']
+
+    		print ("\nTop 20 recommendations")
+    		#Find movies rated more than 100 times
+    		ratingCounts=ratings.groupBy("movieID").count().filter("count>100")
+    		#Construct a "test" dataframe for user 0 with every movie rated more than 100 times
+    		popularMovies=ratingCounts.select("movieID").withColumn('userID',lit(0))
+    		#Run our model on that list of popular movies for user ID 0
+    		recommendataions=model.transform(popularMovies)
+    		#Get the top 20 movies with the highest predicted rating for this user
+    		topRecommendations=recommendations.sort(recommendations.predication.desc()).take(20)
+
+    		for recommendation in topRecommendations:
+    			print(movieNames[recommendation['movieID']],recommendation['prediction'])
+
+    		spark.stop()
+
+    	To run the script:
+    		$export SPARK_MAJOR_VERSION=2
+    		$spark-submit MovieRecommendationsALS.py
+
+    	Results:
+    		(u'Ghost and the Darkness, The (1996)', nan)
+			(u'Courage Under Fire (1996)', nan)
+			(u"It's a Wonderful Life (1946)", nan)
+			(u'Jungle2Jungle (1997)', nan)
+			(u'Crimson Tide (1995)', nan)
+			(u'Big Night (1996)', nan)
+			(u'Grease (1978)', nan)
+			(u"What's Eating Gilbert Grape (1993)", nan)
+			(u'Peacemaker, The (1997)', nan)
+			(u'Natural Born Killers (1994)', nan)
+			(u"My Best Friend's Wedding (1997)", nan)
+			(u'Beauty and the Beast (1991)', nan)
+			(u'Gone with the Wind (1939)', nan)
+			(u'Dragonheart (1996)', nan)
+			(u'Murder at 1600 (1997)', nan)
+			(u'Con Air (1997)', nan)
+			(u'Mother (1996)', nan)
+			(u'Eraser (1996)', nan)
+			(u'Right Stuff, The (1983)', nan)
+			(u'M*A*S*H (1970)', nan)
+
+
+Machine Learning Coach:
+IMP: $conda activate my_env
+	$conda list
+	$python
+Data Preprocessnig
+	download data from https://www.superdatascience.com/pages/machine-learning
+	refer Part 1: Data Preprocessing
+	Importing the Libraries
+		import numpy as np #this for mathemtics
+		import matplotlib.pyplot as plt # this for graphs
+		import pandas as pd  #this for importing datasets and managing
+		# Importing the dataset
+			dataset = pd.read_csv('/home/shivaprasad/Downloads/DataEngineering_DataScience/ml/Machine Learning A-Z Template Folder/Part 1 - Data Preprocessing/Data.csv')
+			X = dataset.iloc[:, :-1].values
+			y = dataset.iloc[:, 3].values
+	Handling Missing Data
+		replacing missing values with Mean,Median,Mode value of the series using the library
+			from skilearn.preprocessing import Imputer
+			imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
+			imputer = imputer.fit(X[:, 1:3])
+			X[:, 1:3] = imputer.transform(X[:, 1:3])
+	Handling Categorical data
+		giving 0,1 values to categorical data
+			from skilearn.preprocessing import LabelEncoder,OneHotEncoder
+			# Encoding the Independent Variable
+			from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+			labelencoder_X = LabelEncoder()
+			X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
+			onehotencoder = OneHotEncoder(categorical_features = [0])
+			X = onehotencoder.fit_transform(X).toarray()
+			# Encoding the Dependent Variable
+			labelencoder_y = LabelEncoder()
+			y = labelencoder_y.fit_transform(y)
+	Splitting data set into Training and Testing
+			from sklearn.model_selection import train_test_split
+			X_train, X_test, y_train, y_test = train_test_split(X, y,  test_size = 0.2, random_state = 0)
+	Feature Scaling (to get all values into a similar scale)
+			from sklearn.preprocessing import StandardScaler
+			sc_X = StandardScaler()
+			X_train = sc_X.fit_transform(X_train)
+			X_test = sc_X.transform(X_test)
+			sc_y = StandardScaler()
+			y_train = sc_y.fit_transform(y_train)
+Simple Regression
+	y=b0+b1*x
+	y is dependent variable (salary,grade)
+	x is independent varaible (experience,no of hours studied)
+	b0 is base constant (starter salary, base grade)
+	b1 is unit increment, coefficient of independent variable
+
+	salary = 30K + 1*experience
+		where 30K is base salary for fresher
+		1 is 1 year increment
+
+	y(i)-y(^)
+	y(i) is actual datapoint
+	y(^) is expected datapoint
+	to find the best fitting line: find all sum(square(y(i)-y(^))) find the min(square(sum(y(i)-y(^))))
+	Python:
+		# Simple Linear Regression
+
+		# Importing the libraries
+		import numpy as np
+		import matplotlib.pyplot as plt
+		import pandas as pd
+
+		# Importing the dataset
+		dataset = pd.read_csv('Salary_Data.csv')
+		X = dataset.iloc[:, :-1].values
+		y = dataset.iloc[:, 1].values
+
+		# Splitting the dataset into the Training set and Test set
+		from sklearn.cross_validation import train_test_split
+		X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, random_state = 0)
+
+		# Fitting Simple Linear Regression to the Training set
+		from sklearn.linear_model import LinearRegression
+		regressor = LinearRegression()
+		regressor.fit(X_train, y_train)
+
+		# Predicting the Test set results
+		y_pred = regressor.predict(X_test)
+
+		# Visualising the Training set results
+		plt.scatter(X_train, y_train, color = 'red')
+		plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+		plt.title('Salary vs Experience (Training set)')
+		plt.xlabel('Years of Experience')
+		plt.ylabel('Salary')
+		plt.show()
+
+		# Visualising the Test set results
+		plt.scatter(X_test, y_test, color = 'red')
+		plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+		plt.title('Salary vs Experience (Test set)')
+		plt.xlabel('Years of Experience')
+		plt.ylabel('Salary')
+		plt.show()
+
+MultiLinear Regression
+	y=b0+b1*x1+b2*x2+...+bn*xn
+		where
+		b0 is constant
+		b1,b2,..bn are coefficients
+		x1,x2...xn are independent variables
+		y is dependent variable
+	Assumptions
+		Linearity
+		Homoscedasticity
+		Mutivariate normality
+		Independence of errors
+		Lack of multicollinearlity
+	Dummy Variables
+		if the independent variable is categorical then create dummy variable with values 1/0
+		Dummy Variable Trap
+			always omit one dummy variable
+	Building Models
+		All-In
+			Prior knowledge
+			you have to
+			preparing for backward elimination
+		Backward elimination
+			select a significant level to stay in the model (5% or 0.05)
+			fit the full model with all possible predictors
+			consider the predictor with the highest P value. if P>SL go to step 4, otherwise go to FIN
+			remove the predictor
+			fit model without this variable
+		Forward selection
+			select a significant level to enter the model (5% or 0.05)
+			fit all simple regression models y~Xn select the one with the lowest P-value
+			keep this variable and fit all possible models wtih one extra predictor added to the one you already have
+			consider the predictor with the lowest P-value . if P<SL go to STEP3 otherwise goto FIN.
+		Bidirectional elimination
+			select a significance level to enter and to stay in the model
+				e.g. SLENTER=0.05, SLSTAY=0.05
+			perform the next step of FORWARD selection (new variables must have P<SLENTER to enter)
+			perform ALL steps of BACKWARD selection (old variables must have P<SLSTAY to stay)
+			no new variables can enter and old variables can exit
+		All Possible Model
+			select a criterion of goodness of fit
+			construct all possible regression models: 2^n-1 total combinations
+			select the one with best criterio
+
+
+Data Science Coach:
+Statistics:
+	Types of Data:
+		Numerical
+			Descrete - can be represented in integers, like age in year, number of pages
+			Continuous - can be continuous like money in a bank, average rain fall in a day
+		Categorical - represented in categories, like different countries, races
+		Ordinal - mix of numerical and categorical, like movie rating from 1 to 5
+	Mean,Median and Mode:
+		Mean - average which can be calculated using sum/count
+			mean of 10,15,23 is (10+15+23)/3=16
+		Median - centre point of the data set after sorting the data points. if the count is even, then the median will be average of the middle points.
+			median of 0,1,0,2,3,5,0 .. before calculating, sort them (0,0,0,1,2,3,5) and the middle point is 1. so median is 1
+		Mode -  most of number of occurence in a data set.
+			mode of 0,1,0,2,3,5,0 is 0 as it appears the most (3 times).
+	Mean,Median and Mode in Python:
+		Mean - import numpy as np
+			   variable=np.random.normal(centralnumber,standarddeviation,samplesize)
+			   np.mean(variable)
+			   np.median(variable)
+
+			   to plot the above:
+			   %matplotlib inline
+			   import matplotlib.pyplot as pt
+			   pt.hist(variable,samplesize)
+			   pt.show()
+
+			   variable=np.random.randint(startnumber,high=endnumber,size=samplesize)
+			   from scipy import stats
+			   stats.mode(variable)
+
+	Standard Deviation & Variance:
+		standard deviation of a data point indicates how close or far it is from the mean. Variance helps to find out Std devn.
+		process:
+				to find std devn of (1,5,3,6,11,15), calculate mean which is (1,5,3,6,11,15)/6 that stands to 6.84. calculate differnce from mean for each data point (-5.84,-1.84,-3.84,-0.84,4.16,8.16) now calculate square of each difference (34.10,3.39,14.75,0.70,17.30,66.58) now calculate mean of this (34.10+3.39+14.75+0.70+17.30+66.58)/6= 22.80 this will be the variance also referred as sigma square. find out sqrt of sigma square to arrive at sigma (std devn) = 4.77
+				import numpy as np
+				import matplotlib.pyplot as plt
+				%matplotlib inline
+				data=np.array([1,5,3,6,11,15])
+				data.var()
+				data.std()
+				plt.hist(data)
+				plt.show()
+	Distribution types:
+		for continuous data it is probability density function, whereas for descrete data it is probability mass function
+		pdf example:
+		uniform distribution:
+			import numpy as np
+			%matplotlib inline
+			import matplotlib.pyplot as plt
+			x=np.random.uniform(-10,10,100000)
+			plt.hist(x,50)
+		normal/guasian distribution:
+			import numpy as np
+			from scipy.stats import norm
+			import matplotlib.pyplot as plt
+			x=np.arange(-3,3,0.001)
+			plt.plot(x,norm.pdf(x))
+		binomial probability mass function:
+			import numpy as np
+			from scipy.stats import binom
+			import matplotlib.pyplot as plt
+			n=10
+			p=0.5
+			x=np.arange(0,10,0.001)
+			plt.plot(x,binom.pmf(x,n,p))
+		poisson probability mass function:
+			find probability of getting 125 visitors to my hotel when i have 100 visitors on an average
+			import numpy as np
+			from scipy.stats import poisson
+			import matplotlib.pyplot as plt
+			mu=100
+			x=np.arange(50,150,0.5)
+			plt.plot(x,poisson.pmf(x,mu))
+	Percentile and Moments:
+		percentile of a datapoint indicates how many data points are below the referenced datapoint.
+		moments include mean,variance,skew and kurtosis.
+			mean is the average
+			variance is the squared differnce from average
+			skew indicates whether the data is positive skewed or negative skewed in a distribution
+			kurtosis indicates how sharp is the tip and how dark is the tail in the curve.
+		%matplotlib inline
+		import matplotlib.pyplot as plt
+		import numpy as np
+		import scipy.stats as sp
+		x=np.random.normal(0,0.5,10000)
+		plt.hist(x,50)
+		plt.show()
+		np.percentile(x,50)
+		np.percentile(x,99)
+		np.percentile(x,10)
+		sp.skew(x)
+		sp.kurtosis(x)
+	Covariance & Corelation:
+		Covariance and Correlation describe how two variables are related:
+			1.Variables are positiviely related if they move in the same direction.
+			2.Variables are negatively related if they move in opposite direction.
+	Conditional Probability:
+		P(B|A) - to be read as Probability of B given that A has occured will be:
+			P(A,B)/P(A) where P(A,B) is Probability of A and B. P(A) is Probability of A.
+	Bayes Theorm:
+		P(A|B)=(P(A)P(B|A))/P(B)
+
+
+Sqlite Coach:
+# REFER HERE FOR RESOURCE:
+	https://www.tutorialspoint.com/sqlite/sqlite_insert_query.htm
+
+$sqlite3
+#SQLite Statements
+	All the SQLite statements start with any of the keywords like SELECT, INSERT, UPDATE, DELETE, ALTER, DROP, etc., and all the statements end with a semicolon (;).
+#Datatypes
+	text,integer,real,null,blob
+$sqlite3 testDB.db
+	to create database testDB.db
+sqlite>.databases
+	main: /home/shivaprasad/Downloads/sqlite-autoconf-3290000/testDb.db
+	#shows dbs
+$sqlite3 testDb.db .dump > testDB.sql
+	to dump db to sql file
+$sqlite3 testDB.db < testDB.sql
+	to restore sql into sqlite db
+#ATTACH DATABASE 'DatabaseName' As 'Alias-Name';
+sqlite> ATTACH DATABASE 'testDB.db' as 'TEST';
+#DETACH DATABASE 'Alias-Name';
+
+sqlite> .mode column
+sqlite> .header on
+sqlite> .timer on
+sqlite> .schema sqlite_master
+sqlite> SELECT tbl_name FROM sqlite_master WHERE type = 'table';
+sqlite> select * from company where name GLOB "P*";
+
+
+
+
+
+
+Django Coach:
+#resource list
+	https://docs.djangoproject.com/en/2.2/intro/tutorial01/
+	https://medium.com/shecodeafrica/getting-started-with-django-1-beginner-series-e47a8b20d8b4
+	file:///home/shivaprasad/Downloads/0911-learning-django.pdf
+
+$pip install django==2.1
+	# to install django
+
+$pip install virtualenv
+	#this is one time
+$virtualenv django_env
+	#or any name you prefer
+$source django_env/bin/activate
+	# activates virtualenv
+
+$django-admin startproject editdojo_project .
+	# to create project
+$
+	# to run the webpage
+
+$ python manage.py startapp hello
+	# to create an app (specific portion) within project(website)
+
+#Steps to create app
+	edit settings.py
+		add 'hello' to list 'INSTALLED_APPS'
+	edit views.py within hello folder
+		from django.http import HttpResponse
+		def myView(request):
+    		return HttpResponse('Hello.. its my first webpage)
+    edit urls.py
+    	from hello.views import myView
+    	#add below line to 'urlpatterns' list
+    		path('sayHello/',myView),
+
+$sudo fuser -k 8000/tcp
+	# to kill the ports using 8000
+
+
+# create template based webpage
+	$ python manage.py startapp todo
+	edit settings.py
+		add 'todo' to list 'INSTALLED_APPS'
+	# create todo.html page in a directory name it as 'templates' within root folder
+	# todo.html should have the below code
+		<h1>this is a todo page </h1>
+
+	edit views.py within todo folder
+		def todoView(request):
+    		return render(request,'todo.html')
+    edit urls.py
+    	from todo.views import todoView
+    	#add below line to 'urlpatterns' list
+    		path('todo/',todoView),
+
+Data Structures and Algorithm Coach:
+
+resources:
+	https://runestone.academy/runestone/books/published/pythonds/index.html
+	https://practice.geeksforgeeks.org/
+	https://www.geeksforgeeks.org/how-can-one-become-good-at-data-structures-and-algorithms-easily/
+	https://www.youtube.com/watch?v=0XgVhsMOcQM&list=PLI1t_8YX-ApvMthLj56t1Rf-Buio5Y8KL&index=4
+
+
+algorithm is a procedure used to solve a problem
+operations on different data structures + set of instructions for executing them
+Big-O notation is used to assess efficiency of algorithms
+finding algorithm efficiency by time complex can be done using timeit
+	#both the below will return the same output: sum of all numbers up to n
+	def sum1(n):
+		sum1=0
+		for x in range(n+1):
+			sum1+=x
+		return sum1
+	def sum2(n):
+		return (n*(n+1))/2
+	#finding efficiency can be done using timeit
+	$%timeit sum1(10)
+		582 ns ± 32.9 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+
+	$%timeit sum2(10)
+		107 ns ± 1.14 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+	$ %timeit sum1(100)
+		3.44 µs ± 92.6 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+	$ %timeit sum2(100)
+		116 ns ± 0.186 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+arrays and memory
+	each number can be represented in 32 bits (of 0 and 1) ex: 1 can be represented as 000000000000000000000000000001
+	one byte is 8 bits and it needs 4 bytes to store each number ex: 1 can be represented as (00000000)(00000000)(00000000)(00000001)
+
+
+Big Oh Notation:
+	computer speed determines function run time
+	run time of function is determined by big O
+	time complexity:
+		linear time O(n)
+		constant time O(1)
+		quadratic time O(n^2)
+	finding big o:
+		take out fastest growing term
+		take out the coefficient
+
+
+Project Management Coach:
+project is a temporary endeavor with definite begin and end
+sample: build house, change opearating systems
+reason: MACD (Move,Add,Change,Delete)
+project manager should lead the project and meet the goal and should liason with stakeholders
+pm should have knowledge of the project management process, perfomance to execute project, personal behavior to lead
+pm's general management skills:
+	human resource
+	accounting
+	sales and marketing
+	planning
+	logistics
+	procurement process
+	problem solving
+	motivating
+	communicating
+	influencing
+	leadership
+	negotiating
+pm lifecycle:
+	initiating
+	planning
+	executing
+	controlling (both planning and executing)
+	closing
+Initiation
+	why to start the project (cut costs/ increase revenues)
+	who takes part in the project
+	prepare project charter
+	host project kickoff meeting
+	defining the project charter
+		official project document
+		authorizes project to exist
+		authorizes project manager
+		signed by proper authority
+			project sponsor
+			customer
+	developing the project charter
+		requirements for satisfaction
+		project manager
+		project sponsor
+		high level purpose of project
+		milestone schedule
+		stakeholder influence
+		risks
+	project charter
+		date
+		background
+		goals
+		scope
+		stakeholders
+		project milestone
+		budget
+		constraints/assumptions/risks&dependencies
+		approval signatories
+Planning
+	planning is ongoing, much of it happens ahead
+	planning and execution is iterative
+	planning is done on cost,scope,time,risk,hr,communications,stakeholder,quality,procurement,requirements,process improvement,configuration management,change management
+	project scope statement
+		scope description
+		acceptance criteria
+		exclusion
+		constraint
+		assumption
+	project schedule
+		when activities will happen
+		sequencing of activities
+		availability of resources
+		hard logic (must sequencing)/ soft logic (preferred sequencing)
+		project calender - when the work can happen
+		resource calender - when resources are available
+			people, equipment
+
+
+
+Statistics for Data Science and Business Analysis:
+Population:
+	Collection of all items
+	Represented by N
+	Parameter:
+		A number obtained from population
+Sample:
+	A subste of population
+	Represented by n
+	Statistics:
+		A number obtained from sample
+	Randomness (by chance) and Representitiveness (representing population) is key to sample selection
+Types of Data:
+	Categorical / Numerical
+	Categorical:
+		Car brands
+		Yes/No
+	Numerical:
+		Discrete/Continuous
+		Discrete:
+			number of children
+			grades
+			money
+			number of objects
+		Continuous:
+			Weight
+			height
+			area
+			distance
+			time
+Measurement Levels:
+	Qualitative
+		Nominal
+			categories that cant be ordered (seasons,car brands)
+		Ordinal
+			categories that can be ordered (ratings)
+	Quantitative
+		Interval
+			numbers that doesn't have true 0 (temperature in celcius and farenhit)
+		Ratio
+			numbers that does have true 0 and can be represented in ratios (number of objects, distance, time)
+Visualization Techniques:
+	Categorical:
+		Frequency Tables/Bar Chart/Pareto Chart/Pie Chart
+	Frequency Table:
+		table contains:
+			category and frequency
+			Audi	129
+			Ford 	90
+			BMW		113
+			total 	332
+	Bar Chart
+		table contains:
+			category, frequency and relative frequency (% terms)
+			Audi	129 39%
+			Ford 	90  27%
+			BMW		113 34%
+			total 	332
+	Pie Chart
+		table contains same as Bar chart (famous for using it showcase market share)
+	Pareto Chart
+		table contains same as bar chart, but its ordered descending by relative frequency, the graph contains combined percentage line (pareto principle: 80% of the problems are caused by 20%)
+	Numerical:
+		create categories and then create frequency and relative frequency before applying the visualization
+		Histogram is used to draw numerical data graph
+	Cross tables:
+		Side by side bar chart is used for categorical
+		Scatter plot is used for numerical
+			more than 1 variables plotted against each other
+Central Tendency:
+	Mean
+		Average (sum(n)/count(n))
+	Median
+		Central point in ordered sequence (n+1)/2th number
+	Mode
+		most frequent number
+Skewness:
+	Assymmetry
+		talks about how skewed the data is
+			if mean>median then it falls in positive skewness
+			if mean<median then it falls in negative skewness
+			if mean=median=mode then its a neutral skewness
+
+
+Distribution:
+	its a function that shows the possible values for a variable and how often they occur
+	Probability
+		rolling a dice
+			probability of getting 1,2,3,4,5,6 is 1/6 or 0.17
+			probability of getting 7/all else is 0
+			sum of all probabilities is 1
+			probability of getting a sum of 1 is 0 when rolled 2 dice
+			probability of getting a sum of 2 is 1 when rolled 2 dice
+			probability of getting a sum of 3 is 1 or 1/36 when rolled 2 dice
+			probability of getting a sum of 4 is 2 or (1,3) or (2,2) or 2/36 (0.06)
+			Uniform and Binomial distribution are example of discrete numbers
+
+
+
+
+
+
+SOLR:
+	Open source solution to build search engines
+	Implementing solr:
+		Indexing:
+			uniformalizing differnt formats of documents and make it searchable by machine
+		Queryng:
+			user information need expressed
+		Matching:
+			matching between query and document (auto and car.. etc)
+		Ranking:
+			ranking the most relevant on top of the results
+	Starting with Solr:
+		$cd /solr/solr-8.2.0
+		~/solr/solr-8.2.0$ bin/solr start -e cloud
+		*** Accept defaults for prompts to enter except for:
+			Please provide a name for your new collection: [gettingstarted]
+			techproducts
+			Please choose a configuration for the techproducts collection, available options are:
+			_default or sample_techproducts_configs [_default]
+			sample_techproducts_configs
+
+
+			Otherwise default for the below:
+			how many Solr nodes would you like to run in your local cluster? (specify 1-4 nodes) [2]:
+			Please enter the port for node1 [8983]:
+			Please enter the port for node2 [7574]:
+			How many shards would you like to split techproducts into? [2]
+			How many replicas per shard would you like to create? [2]
+		*** To query***
+
+		***To delete***
+			$bin/solr delete -c techproducts
+
+			And then create a new collection:
+
+			bin/solr create -c <yourCollection> -s 2 -rf 2
+
+			To stop both of the Solr nodes we started, issue the command:
+
+			bin/solr stop -all
+
+		Restart Solr
+		Did you stop Solr after the last exercise? No? Then go ahead to the next section.
+
+		If you did, though, and need to restart Solr, issue these commands:
+
+		./bin/solr start -c -p 8983 -s example/cloud/node1/solr
+
+		This starts the first node. When it’s done start the second node, and tell it how to connect to to ZooKeeper:
+
+		./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983
+
+
+		For Range Facets:
+			curl 'http://localhost:8983/solr/films/select?q=*:*&rows=0&facet=true&facet.range=initial_release_date&facet.range.start=NOW-20YEAR&facet.range.end=NOW&facet.range.gap=%2B1YEAR'
+
+		For Pivot Facets:
+			curl "http://localhost:8983/solr/films/select?q=*:*&rows=0&facet=on&facet.pivot=genre_str,directed_by_str"
+
+		$ cd /home/shivaprasad/solr/solr-8.2.0
+		$ mysql -uroot -hse-db.prod-se.aws.learningace.com -paceuser123 -B -e 'select * from centralized_content.document limit 100;'| sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" >  100_documents.csv
+		$ bin/solr create -c documents -s 2 -rf 2
+		$ bin/post -c documents example/documents/*
+		$ bin/solr stop -all
+
+
+
+
+		I had a quick chat with webster, appraised him about the conversation we had when you were here in bangalore.
+		As we are unaware of the finances (payments recieved by you and palani), it's a challenge addressing it.
+		Vulcantech management will oversee complete finances of you and palani, so he was not sure how he can be of help outside of it. Considering the payment comes under Macmillan the parent company.
+		He was appreciative of the work done by you both, but as the company is going through changes in product strategy between intelluslite, iclicker, cirque, hayden-macneil, etc.. the finances of the company are more utilised in sales and once settled will invest in operations, so we may have to wait till then.
+		But I have shared your feelings with webster.
+
+Python & Django Coach:
+	website is an encoded line of the ip address
+	user requests flows through wires and satellite and gets back content from the requested ip/website through wires and satellite very fast
+	front end uses:
+		html - hyper text markup language, every website will have html, it is the structure of the page, view page source will show
+		css - cascading style sheet, actual syling of the website, colors, fonts, borders are all defined by css, css is not mandatory but most sites have it.
+		java script - alllows user interactivity, including programming language, any site with interactivity uses javascript else it's mostly static
+	backend uses:
+		language - python
+		framework - django (pinterest, bitbucket)
+		database - sqlite
+	technologies:
+		php, node.js, ruby/rails, java, python, are all available for a website
+	HTML:
+		html basics
+		tagging
+		lists
+		divs and spans
+		attributes
+		resources:
+			https://www.w3schools.com/html/
+			https://developer.mozilla.org/en-US/docs/Web/HTML
+			https://fonts.google.com/?selection.family=Livvic
+			https://coolors.co/
+		When using radio buttons, they should have the same 'name'
+		When using labels for options they should carry the 'id' matching 'for' value of the label
+
+		box model
+			content - padding - border - margin
+
+
+		html tags:
+			/* - for comment
+			head
+				title
+				link
+			body
+				h1
+				h2, h3...
+				p
+				table
+					tr
+						th
+						th
+					tr
+					tr
+						td
+						th
+					tr
+				ul
+					li
+				ul
+				ol
+					li
+				ol
+				select
+					li
+				select
+				input
+					text,radio,submit
+				input
+				label
+				label
+				id
+				class
+				form
+
+				Notes:
+					name should be same for input boxes to work in tandem (raio buttion)
+					id and class button helps for css styling
+
+		css:
+			tag{property:value}
+			color
+				rgb()
+				rgba()
+				#****  /*for hexa*/
+			font-family
+			border
+			box model
+				content - padding - border - margin
+
+		Bootstrap:
+			apply skill of gathering and applying information than memorizing information
+			copy cdn link path from getbootstrap.com page and paste in head tag
+			use class "container" for center aligning
+			use documentation - components page for using the css tags

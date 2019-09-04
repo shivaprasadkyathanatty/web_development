@@ -1,0 +1,987 @@
+https://s3.amazonaws.com/user-content-upload-prod/f432b7021f524286bf3a290f73c9ac86.pdf
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt ace_api_server_apus_student_exp > ace_api_server_apus_student_exp.sql | s3cmd put ace_api_server_apus_student_exp.sql s3://finalsolrdocsintellus/sqldump/ | mysql -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 < s3cmd get s3://finalsolrdocsintellus/sqldump/ace_api_server_apus_student_exp
+
+course_source update sequence:
+
+create table course_source (course_source_id int, source varchar(128));
+alter table course add column course_source_id int(11) default null;
+alter table course_source add index course_source_id (course_source_id);
+alter table course_source convert to character set utf8;
+set foreign_key_checks=0;
+alter table course add index course_source_id (course_source_id);
+alter table course add constraint fk_course_source_id foreign key (course_source_id) references course_source(course_source_id);
+alter table course_source modify column course_source_id int(11) auto_increment;
+create table coursensource (course_id int(11),course_name varchar(1024),course_source varchar(128),course_source_id int(11));
+insert into coursensource (course_id) select course_id from course;
+update coursensource cs join course c on cs.course_id=c.course_id set cs.course_name=c.course_name;
+select * from coursensource;
+ select distinct substring_index(course_name,":",1),count(*) from coursensource group by 1 order by 2 desc;
+ update coursensource set course_source="Project MUSE" where substring_index(course_name,":",1)="Project MUSE Course";
+ update coursensource set course_source="Saylor Academy" where substring_index(course_name,":",1)="Saylor Academy";
+update coursensource set course_source="Lumen Learning" where substring_index(course_name,":",1)="Lumen Learning";
+update coursensource set course_source="JHSPH OpenCourseWare" where substring_index(course_name,":",1)="JHSPH OpenCourseWare";
+update coursensource set course_source="UCI Open" where substring_index(course_name,":",1)="UCI Open";
+update coursensource set course_source="Open Yale Courses" where substring_index(course_name,":",1)="Open Yale Courses";
+update coursensource set course_source="DigitalCommons@USU" where substring_index(course_name,":",1)="DigitalCommons@USU Course";
+update coursensource set course_source="openstax CNX" where substring_index(course_name,":",1)="OpenStax College  Course";
+update coursensource set course_source="Intellus Open Course" where substring_index(course_name,":",1)="Intellus Open Course";
+insert into course_source (source) select distinct course_source from coursensource;
+update coursensource cs join course_source cso on cs.course_source=cso.source set cs.course_source_id=cso.course_source_id;
+update course c join coursensource cs on cs.course_id=c.course_id set c.course_source_id=cs.course_source_id;
+set foreign_key_checks=1;
+
+CS50:
+Everything in computer is represented in 0 & 1.
+Number 0 is represented as     000
+Number 1 is represented as     001
+Number 2 is represented as     010
+Number 3 is represented as     011
+Number 4 is represented as     100
+Number 5 is represented as     101
+Number 6 is represented as     110
+Number 7 is represented as     111
+Number 8 is represented as    1000
+Number 9 is represented as    1001
+Number 10 is represented as   1010
+Number 11 is represented as   1011
+Number 12 is represented as   1100
+Number 13 is represented as   1101
+Number 14 is represented as   1110
+Number 15 is represented as   1111
+
+Source Code -  Human Readable
+Machine Code - Binary which Machine understands
+Source code to Machine Code is done by Compiler
+
+
+
+MONGO:
+go to terminal and
+$sudo vim /etc/mongod.conf
+remove comment
+  #  bindIp: 127.0.0.1
+add comment
+  # security:
+  # authorization:'enabled'
+restart mongo
+$sudo service mongod restart
+
+to start: $mongo
+
+to show databases: $show dbs
+to use a specific db, if not exists then it will create: $use mydb
+to know the db in use: $db
+to delete the db in use, if no db selected default db test will be deleted: $dropDatabase()
+to create table/collection: $db.createCollection("collectionname")
+to delete collection: $db.collection.remove()
+to create collection on the fly: $db.tutorialspoint.insert({"name":"tutorialspoint"})
+to show tables: $show collections
+to drop tables: $db.mycollection.drop()
+to query tables: $db.mycol.find().pretty()
+to pass condition in query: $db.mycol.find({"title":"MongoDB Overview"})
+to pass condition in query with "and": $db.mycol.find({$and:[{"title":"MongoDB Overview"},{"likes":"100"}]})
+to update: $db.mycol.update({"title":"MongoDB Overview"},{$set:{"title":"MongoDB Tutorials"}})
+to replace: $db.mycol.save({"_id":ObjectId("5a8a33d935411dd4126337cc"),"title":"MongoDB Tutorial"})
+to delete: $db.mycol.remove({"title":"MongoDB Tutorial"})
+to truncate: $db.mycol.remove()
+to project only few columns in the output: $db.mycol.find({},{"title":1})
+to limit the output: $db.mycol.find().limit(2)
+to skip the record: $db.mycol.find().skip(1)
+to counter timeout errors: sudo service mongod start
+to count records: db.mycol.count(
+
+
+db.question.find({endDate:{$gt:new Date('2016-02-12')}}).limit(1).pretty()
+db.question.find({$and:[{answerLengthLimit:140},{answerSignificant:8}]}).limit(1).pretty()
+db.question.find({$and:[{answerLengthLimit:140},{answerSignificant:8}]},{endDate:1,dateAdded:1,_id:0}).limit(1).pretty()
+
+
+
+db.getCollection('user').aggregate([
+{'$match': {'participantCourses.institutionRefId': JUUID('0322cbfd-409f-410b-8987-9316dd2885c3')}},
+{'$project': {"firstName":1,"lastName":1,
+    'participantCourses': {'$filter': {'input': '$participantCourses',
+        'as': 'course',
+    'cond': {"$eq": ['$$course.institutionRefId',JUUID("0322cbfd-409f-410b-8987-9316dd2885c3")]}
+   }}}},
+//    {"$count":"total_count"}
+   {"$unwind":"$participantCourses"},
+ {'$lookup': {'from': 'attendance',
+     'localField': 'participantCourses.courseRefId',
+     'foreignField': 'courseRefId',
+     'as': 'attendance_info',
+     }},
+//      {"$project":{"total" :{"$size":"$attendance_info"},"firstName":1,"lastName":1}},
+  {'$lookup': {'from': 'attendanceParticipant', 'localField': 'attendance_info._id', 'foreignField': 'attendanceRefId', 'as': 'attendance_participant_info'}},
+      {"$project":{"total" :{"$size":"$attendance_info"},"firstName":1,"lastName":1,
+            "user_ID":{'$filter': {'input': '$attendance_participant_info', 'as': 'attendance_participant',
+    'cond':  {"$eq": ['$$attendance_participant.userRefId','$_id']}}}}},
+{"$match":{"total":{"$gt":0}}},
+
+            {"$project":{
+               "total" :1,
+                "attendance_participant_info.userRefId":1,
+                "participantCourses":1,
+                 "_id":1,
+                 "firstName":1,
+                 "lastName":1,
+                "attended" :{"$size":"$user_ID"}
+
+                }},
+                {"$project":{     "firstName":1,
+                 "lastName":1,"total_absences": { "$subtract": [ "$total","$attended" ] }}},
+                {"$group":{"_id":"$_id", "firstName": { "$first": "$firstName" },
+        "lastName": { "$first": "$lastName" },
+                    "overall_absences":{"$sum":"$total_absences"}}}])
+
+XML:
+Elements: elements are the fields
+Root Element is a must
+each element should have a start and end tag
+<element> should be used for start
+</element> should be used to end
+there shouldnt be overlap
+<root> <child> <subchild></subchild></child></root>
+declaration in the begining is optional and can  be like this:
+<? xml version = "1.0" encoding = "UTF-8"?>
+UTF stands for unicode transformation format.
+xml parsers support utf-8 and utf-16
+attributes should be written in double quotes within start tag
+ex: <book condition="old"> black swan </book>
+book is the element
+condition = "old" is the attribute
+black swan is the text
+references are special characters that needs to be written after & and end with ;
+example: &amp; = &
+&lt; = <
+&gt; = >
+&quot; = ""
+&apos;='
+&#8211; = -
+to write salary>1lac write salary&gt;1lac
+xml parser will parse them back to their actual meaning like greater than or lesser than
+comments should be written with syntax: <!-- write here -->
+comments should not be on top or bottom of the xml or inside the tag.
+
+element names must not have spaces but can have digits, underscore, hyphens
+To parse XML document through Python:
+Import xml.dom.minidom
+Use the function "parse" to parse the document ( doc=xml.dom.minidom.parse (file name);
+Call the list of XML tags from the XML document using code (=doc.getElementsByTagName( "name of xml tags")
+
+
+
+Pycharm:
+Ctrl+Space to use the class
+Ctrl+Space twice to import the module
+Alt+F7 to Find usages
+Ctrl+Q to view quick documentation
+Navigate to declaration of the class Ctrl+B
+Ctrl+F12 to navigate file structure
+Shift+F6 to rename the variable at all places
+Ctrl+D duplicates selected block
+
+
+
+S3CMD:
+Make bucket
+      s3cmd mb s3://BUCKET
+  Remove bucket
+      s3cmd rb s3://BUCKET
+  List objects or buckets
+      s3cmd ls [s3://BUCKET[/PREFIX]]
+  List all object in all buckets
+      s3cmd la
+  Put file into bucket
+      s3cmd put FILE [FILE...] s3://BUCKET[/PREFIX]
+  Get file from bucket
+      s3cmd get s3://BUCKET/OBJECT LOCAL_FILE
+  Delete file from bucket
+      s3cmd del s3://BUCKET/OBJECT
+  Delete file from bucket (alias for del)
+      s3cmd rm s3://BUCKET/OBJECT
+  Restore file from Glacier storage
+      s3cmd restore s3://BUCKET/OBJECT
+  Synchronize a directory tree to S3 (checks files freshness using
+       size and md5 checksum, unless overridden by options, see below)
+      s3cmd sync LOCAL_DIR s3://BUCKET[/PREFIX] or s3://BUCKET[/PREFIX] LOCAL_DIR
+  Disk usage by buckets
+      s3cmd du [s3://BUCKET[/PREFIX]]
+  Get various information about Buckets or Files
+      s3cmd info s3://BUCKET[/OBJECT]
+  Copy object
+      s3cmd cp s3://BUCKET1/OBJECT1 s3://BUCKET2[/OBJECT2]
+  Modify object metadata
+      s3cmd modify s3://BUCKET1/OBJECT
+  Move object
+      s3cmd mv s3://BUCKET1/OBJECT1 s3://BUCKET2[/OBJECT2]
+  Modify Access control list for Bucket or Files
+      s3cmd setacl s3://BUCKET[/OBJECT]
+  Modify Bucket Policy
+      s3cmd setpolicy FILE s3://BUCKET
+  Delete Bucket Policy
+      s3cmd delpolicy s3://BUCKET
+  Modify Bucket CORS
+      s3cmd setcors FILE s3://BUCKET
+  Delete Bucket CORS
+      s3cmd delcors s3://BUCKET
+  Modify Bucket Requester Pays policy
+      s3cmd payer s3://BUCKET
+  Show multipart uploads
+      s3cmd multipart s3://BUCKET [Id]
+  Abort a multipart upload
+      s3cmd abortmp s3://BUCKET/OBJECT Id
+  List parts of a multipart upload
+      s3cmd listmp s3://BUCKET/OBJECT Id
+  Enable/disable bucket access logging
+      s3cmd accesslog s3://BUCKET
+  Sign arbitrary string using the secret key
+      s3cmd sign STRING-TO-SIGN
+  Sign an S3 URL to provide limited public access with expiry
+      s3cmd signurl s3://BUCKET/OBJECT <expiry_epoch|+expiry_offset>
+  Fix invalid file names in a bucket
+      s3cmd fixbucket s3://BUCKET[/PREFIX]
+  Create Website from bucket
+      s3cmd ws-create s3://BUCKET
+  Delete Website
+      s3cmd ws-delete s3://BUCKET
+  Info about Website
+      s3cmd ws-info s3://BUCKET
+  Set or delete expiration rule for the bucket
+      s3cmd expire s3://BUCKET
+  Upload a lifecycle policy for the bucket
+      s3cmd setlifecycle FILE s3://BUCKET
+  Get a lifecycle policy for the bucket
+      s3cmd getlifecycle s3://BUCKET
+  Remove a lifecycle policy for the bucket
+      s3cmd dellifecycle s3://BUCKET
+  List CloudFront distribution points
+      s3cmd cflist
+  Display CloudFront distribution point parameters
+      s3cmd cfinfo [cf://DIST_ID]
+  Create CloudFront distribution point
+      s3cmd cfcreate s3://BUCKET
+  Delete CloudFront distribution point
+      s3cmd cfdelete cf://DIST_ID
+  Change CloudFront distribution point parameters
+      s3cmd cfmodify cf://DIST_ID
+  Display CloudFront invalidation request(s) status
+      s3cmd cfinvalinfo cf://DIST_ID[/INVAL_ID]
+
+
+
+
+New Institute Creation Steps:
+1. login to:
+#ssh ubuntu@prod-arp-app003.prod.use1.ec2.aws.intelluslearning.com
+
+2. change directory to python scripts that will create institute and copy demo courses:
+#cd workspace/ace1/python/institute_onboarding
+3. run new institute creation script, change the institute name from BETHEL to requested name
+#python create_new_institute.py --backup-dir /home/ubuntu/workspace --db-hostname se-db.prod-se.aws.learningace.com --db-user root --db-password aceuser123 BETHEL
+4. run
+ script to created demo user and course
+# python create_demo_user_and_courses.py --api-endpoint prod-arp-app001-14-04.prod.use1.ec2.aws.intelluslearning.com --institutename BETHEL
+@@5. Take screenshot and send it to devops-intellus as snippet stating "New Institute BETHEL in prod. Done!"
+6. #insert ignore into ace_api_server_bethel_student_exp.source_permission select * from ace_api_server_gcmp_student_exp.source_permission
+7. #delete from ace_api_server_bethel_student_exp.library_status;
+8. #insert into ace_api_server_bethel_student_exp.library_status select * from ace_api_server_gcmp_student_exp.library_status;
+@@9. select * from config_repo_student_exp.config_repo where institute="BETHEL" and section="lti_credentials";
+
+@@10. Send email to anna/requester keeping webster,shan and sunny in loop
+Sample mail:
+Subject: BETHEL LTI URL and credentials
+Hi Anna,
+PFB the LTI creds and URL for BETHEL.
+Launch URL:     https://bethel-se.intelluslearning.com
+LTI Key:        6gyoitjzew16wkuknb7np
+LTI Secret:     7xaidtKxFwfv48xGKnV2nEx5Vn2apieMq7R5yEANn
+Thanks,
+Shiva
+
+@@11. Update live institute sheet: https://docs.google.com/spreadsheets/d/11ZovPAiHNgAI0SwVDoQE92SUFCcNdBcvZx9ja8bOkPA/edit?usp=sharing
+
+12. doc_url_template entry:
+  insert into doc_url_template values("","BETHEL","","","&cc_load_policy=1&cc_lang_pref=en",9);
+
+@@13. Update new institute set up sheet: https://docs.google.com/spreadsheets/d/1ngKo4SB-KwoEA5h7btIfrcp6plFTP0InP9_Wt1RbtlQ/edit?usp=sharing
+
+14. enable reporing:
+#INSERT INTO config_repo_arp.config_repo VALUES('','BETHEL','bethel.intelluslearning.com','reporting','reporting_enabled','true');
+
+15. #delete from  config_repo_reporting.config_repo where institute="BETHEL";
+#INSERT INTO config_repo_reporting.config_repo (institute, domain, section, attr_key, attr_value) SELECT 'BETHEL', 'bethel.intelluslearning.com', section, attr_key, attr_value FROM config_repo_reporting.config_repo where institute='APUS';
+
+16. #insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) values ('BETHEL', 'bethel.intelluslearning.com', 'content', 'content_permissions', 'OER');
+
+17. update config_repo_student_exp.config_repo set attr_value="http://internal-prod-solr-appelb-003-004-n-1117191480.us-east-1.elb.amazonaws.com:8983/solr/emr-all-20180625" where attr_key like "%lucene%" and institute="BETHEL";
+
+18. update config_repo_arp.config_repo set attr_value="http://internal-prod-solr-appelb-003-004-n-1117191480.us-east-1.elb.amazonaws.com:8983/solr/emr-all-20180625" where attr_key like "%lucene%" and institute="BETHEL";
+
+19. insert ignore into config_repo_arp.config_repo values("","BETHEL","bethel.intelluslearning.com","institute_info","long_name","Bethel University");
+
+20. update config_repo_student_exp.config_repo set attr_value=domain where section="general" and attr_key="domain_name" and institute="BETHEL";
+
+
+21. Run this after new index build:
+delete from config_repo_arp.config_repo where attr_key = "content_permissions";
+This will delete entries like the below:
+| 8975 | CASYSTEM  | casystem.intelluslearning.com | content              | content_permissions                    | OER
+
+To change to new prod replica staging RDS:
+Obtain stagin RDS
+Goto: https://acelearningco.atlassian.net/wiki/spaces/QA/pages/430735364/Intellus+QA+stack
+ssh to ARP BE machine IP
+edit /home/ubuntu/ace.conf.acp and replace host with new staging rds host name
+edit /aceDeploy/env/ace_api_server_mt_arp/var/arpApiServer/python/mtArpApiServer.conf.acp and replace host with new staging rds host name
+From QA stack, copy the FE ARP ELB and find the IP by issuing
+$ host staging-a-Frontend-ERK644AYS9US-1291093224.us-east-1.elb.amazonaws.com
+Copy the IP to /etc/hosts like $vi /etc/hosts $34.230.151.205 macmillan-arp.intelluslearning.com
+
+whenever the arp is down, pleas do the following to find out the latest ip:
+host frontendelb
+copy the ip
+and paste it in /etc/hosts
+
+
+
+
+Python:
+
+if statement -
+if condition1:
+    statement1
+elif condition2:
+    statement2
+else
+    statement3
+
+inline if statement -
+statement1 if condition1 else statement2
+
+to debug in python
+#import ipdb
+#ipdb.set_trace()
+OR
+#from IPython.core.debugger import Pdb
+#ipdb = Pdb()
+#ipdb.set_trace()
+
+
+GIT:
+git status
+git stash
+git fetch (needs password)
+checkout "branch"
+git stash pop
+
+
+Direct to Canvas:
+
+
+select * from config_repo where institute="FLETCHER" and section in ("lms_publish_flow");
+use fletcher settings.. (earlier it was TROY type of settings, but now it's fletcher type..)
+refer: https://acelearningco.atlassian.net/browse/ACCT-1988
+Canvas Install URL: https://fletcher.instructure.com
+
+ID: 39880000000000011
+Key: f8PJuhH2yxPI0mB59wkrmPz5z99LtGTVSAEuXZdnoScjWWIvrNV5QSpCq9FK8fFb
+URI: https://fletcher.intelluslearning.com/arp_ajax/arp-publish-oauth-redirect/
+
+update config_repo_arp.config_repo set attr_value = 'true' where institute="FLETCHER" AND attr_key="lms_enable_direct_lms_publish";
+insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) VALUES ("FLETCHER", "fletcher.intelluslearning.com", "lms_publish_flow","lms_publish", "canvas");
+insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) VALUES ("FLETCHER", "fletcher.intelluslearning.com", "lms_publish_flow","lms_developer_secret", "f8PJuhH2yxPI0mB59wkrmPz5z99LtGTVSAEuXZdnoScjWWIvrNV5QSpCq9FK8fFb");
+insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) VALUES ("FLETCHER", "fletcher.intelluslearning.com", "lms_publish_flow","lms_developer_key", "39880000000000011");
+insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) VALUES ("FLETCHER", "fletcher.intelluslearning.com", "lms_publish_flow","lms_install_url", "https://fletcher.instructure.com/");
+insert into config_repo_arp.config_repo (institute, domain, section, attr_key, attr_value) VALUES ("FLETCHER", "fletcher.intelluslearning.com", "lms_publish_flow","lms_tool_information", "https://fletcher-se.intelluslearning.com/student-experience/");
+
+
+MYSQL:
+#use the below line of code to upload data from csv file into a mysql table by logging in to mysql
+$mysql>
+LOAD DATA LOCAL INFILE '/home/ubuntu/deadassets.csv' INTO TABLE tmp.deadassets FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+
+
+mysql -uroot -hpm1agvazfmbl7b2.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 -B -e 'select doc_seq_id,document_url from centralized_content.document where source_id=1215 and substring_index(document_url,"/",3)="https://www.khanacademy.org";'| sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" >  salkhan.csv
+
+
+MYSQLDUMP to S3:
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt centralized_content doc_url_template | gzip > document.sql.gz | s3cmd put document.sql.gz s3://finalsolrdocsintellus/sqldump/
+
+mysqldump -uroot -hpm1agvazfmbl7b2.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt ace_api_server_apus_student_exp | gzip > ace_api_server_apus_student_exp.sql.gz | s3cmd put ace_api_server_apus_student_exp.sql.gz s3://finalsolrdocsintellus/apusdump/
+
+
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt centralized_content source | gzip > source.sql.gz | s3cmd put source.sql.gz s3://finalsolrdocsintellus/sqldump/
+
+
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt centralized_content source | gzip | s3cmd put - source.sql.gz s3://finalsolrdocsintellus/sqldump/
+
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt centralized_content doc_url_template > doc_url_template.sql
+
+
+https://linuxaws.wordpress.com/2017/02/07/backup-of-mysql-database-to-amazon-s3-using-bash-script-is-not-rocket-science-learn-them-now/
+
+
+SCRAPY:
+Spider - Send request to crawl, Receive response from Engine and parse it using "process_spider_input()" and send the output using "process_spider_output()"
+Engine - Receive request for crawl, Send it to Scheduler, Send request from Scheduler to Downloader, Receive response from Downloader and send it to Spider, receive output from spider and send it to item_pipelines and any new requests to scheduler
+Scheduler - Receive request for crawl, Send request for crawl to Enginge,
+Downloader - Receive request from Engine and Download, Send response to Engine
+Item_Pipelines - receive output from engine
+
+$scrapy shell - opens the shell
+$fetch("url") - fetches data from the url
+$view(response) - opens the response on new browser
+$response.text - view on screen the text from response page
+
+cd scrapy
+scrapy startproject wisequotes
+cd wisequotes
+  scrapy genspider developgoodhabits developgoodhabits.comCDSFF *
+vi developgoodhabits.py
+uncomment pass
+#pass
+add the below lines:
+quotes = response.xpath("//div//span[@class='italic_text']/text()[1]").extract()
+authors=response.xpath("//div//p[@class='tve_p_center']/text()[1]").extract()
+print quotes
+print authors
+cd /scrapy/wisequotes/wisequotes
+vi items.py
+uncomment pass
+#pass
+add the below lines:
+quote=scrapy.Field()
+author=scrapy.Field()
+scrapy crawl developgoodhabits
+
+
+ec2 instance reboot:
+aws ec2 reboot-instances instance-ids i-0704a364d4ad8d5fe
+
+
+
+sql doc_seq_id used for course curation:
+select c.arp_owner_user_id user_id,cast(AES_DECRYPT(au.email,'7ZHsfXDRb7NIKv0jYpRmUO9G2X5HRnyrbP944uM5h') as CHAR(10000) character set utf8) as user_email,c.course_name,cl.course_id,dc.doc_seq_id,dc.title document_title,lpi.learning_path_item_id,lpi.title learning_path_item_tile,lp.learning_path_id,lp.title learning_path_title,cl.course_lesson_id,cl.title course_lesson_title,dc.document_url from learning_path_item lpi join learning_path lp on lpi.learning_path_id = lp.learning_path_id and lpi.version = lp.version join course_lesson cl on cl.course_lesson_id = lp.course_lesson_id join centralized_content.document dc on dc.doc_seq_id=lpi.doc_seq_id join course c on c.course_id=cl.course_id join arp_user au on au.user_id=c.arp_owner_user_id where dc.doc_seq_id in (44140310,111087565,111087566,111087567,111087568,111087569,111087570,112656040,44117624,44117625,44117632,44117638,44117646,44117655) and lpi.deleted=0 and dc.deleted=0 and lp.deleted=0;
+
+
+access code generation:
+https://acelearningco.atlassian.net/wiki/spaces/eng/pages/508887041/SE+Admin+Tool
+
+
+SOLR:
+document_type_id based faceting with facet condition based on curation count
+
+http://prod-solr-app005.prod.use1.ec2.aws.intelluslearning.com:8983/solr/emr-all-20180825/select?q=*%3A*&rows=0&wt=json&indent=true&facet=true&facet.field=document_type_id&&fq=curation_count:[1%20TO%20*]
+
+
+pdf conversion:
+export HOME=/tmp && soffice --headless --convert-to pdf:draw_pdf_Export e5eea23fc52d4e679190e66b3c4910a5.pptx
+unoconv -f pdf -eSelectPdfVersion=1 e5eea23fc52d4e679190e66b3c4910a5.pptx
+
+
+Python for Data Science
+Data + Analysis = Insight
+Insight leads to Action
+Historical Data + Near real time data = Prediction
+Prediction can be used for Action:
+Example: Weather Forecasts can be used to sell Jackets/Umbrellas
+Bigdata + Computing at scale = New era of datascience
+How much data is Big Data?
+social media data, personal health data from variable deiveses, purchasing history of websites
+every minute: 204 million emails, 200K photos, 1.8 million likes, 2.78 million video views, 72 hours of video uploads
+1000 MB = 1 GB  (Giga)
+1000 GB = 1 TB (Terra)
+1000 TB = 1 PB (Peta)
+1000 PB = 1 EB (Exa)
+1000 EB = 1 ZB (Zetta)
+Modern Data science skills - Python programming, Statistical Analysis, Machine Learning, Scalable big data analyis
+
+
+Data Science = Maths + Tech + Business
+Maths + Scientific + Data + Hacking + Computing + Visualization + Domain + Statistics
+It's a unicorn
+Data science is team effort
+
+passion for data, analytics, engineering solutions, communication, curiosity
+
+more people use python for data science
+easy to read n learn, vibrant community, growing libraries, jupyter notebooks
+
+numpy, pandas, matplotlib, scikit-learn, BeautifulSoup
+
+Basic steps in a data science project:
+Data Engineering like -->
+Acquire: Import raw dataset into your analytics platform
+        Steps: Identify data sets, retrieve data, query data
+        how to aquire?
+        if traditional database then sql n query browsers
+        if text files then scripting language (python)
+        if web pages/services (xml/html/json/rss) then scripting languages
+        if no sql storage then (mongo db)
+
+Prepare: Explore & visualize
+         Perform data cleaning
+         Steps: Explore data (Understand nature of data, Preliminary Analysis)
+                Preprocess data (Clean, Integrate, Package)
+         Why explore? to find: Corelations, General Trends, Outliers
+         Describe data: Mean (Average), Median(Center), Mode (Frequent), Range/Standard Deviation (Spread)
+         Visualize data: Histograms (distibution of data, skewness), heat maps (hot spots), scatter plots (two variables), box plot, line graphs
+         Pre-processing data:
+         realword data is messy-- inconsistent, duplicate, missing, invalid, outliers
+          to address the messy data, use domain knowledge and :
+          remove missing and outlier values
+          merge duplicates
+          get best estimates for invalid data
+
+        Getting data in shape:
+        Done through Data munging/ data wrangling/ data preprocessing include:
+            demensionality reduction, data manipulation, transformation, feature selection, scaling
+            scaling is used for standardizing the range of independent variables - like weight n height data scaled between 0 to 1
+            transformation is used for reduce noise and variability - like aggregation.. aggregate daily sales figure to weekly or monthly
+            feature selection is used to select relevant variables - done through removing/combining/adding features.. like removing tax data when purchase price is used... adding education qualification for loan approval..
+            dimensionality reduction - to reduce from 3D to 2D.. principal component analysis.. reducing number of variables to few key variables..
+
+
+Computational data science like -->
+Analyze: Feature Selection
+         Model Selection
+         Analyze the results
+         Steps:
+              Select Analaytical Techniques, Build Models.
+         Build Model steps:
+              Input data - Analysis Technique - Model - Model Output
+                 Categories of analysis techniques:
+                      Classification - Goal is to predict category - like weather is Sunny/Windy/Rainy/Cloudy
+                      Clustering - Goal is to organize similar items into groups - like teenagers/adults/seniors
+                      Regression - Goal is to Predict numeric values -  like predicting stock price
+                      Graph Analytics - Goal is to use graph structures to find connections between entities.. like exploring spread of desease, identifying security threats
+                      Association Analysis - Goal is to find rules to capture associations between items - many customers on sunday night bought diaphers and beer together this made the store to place diaphers and beer closer and saw the sales zoomed for these two  items..
+                Modelling:
+                  Select techinque, build model, validate model (predicted value is correct or not?)
+
+Report: Present your findings
+        Steps: Summarise, visualize, post process, present
+        what value does it add?
+        show all result sets/findings
+        tell complete n true story than tell some clean clear story when it's actually not
+        use any of these to plot charts: R/Python/Tableau/Google Charts/Timeline/D3
+
+
+Act: Use Them
+        Implementation steps:
+          Process - Stakeholders - Automation
+          meausre impact of the action: Measure, Evaluate
+          Evaluation: Favorable results/ Revisit? / Further opportunities
+
+
+how does data science happen:
+Build - Explore - Scale - report - act
+
+Formulate the right question:
+Define the problem - Assess the situation - Define Goals
+
+
+
+UNIX:
+ls - list
+ls -l - list long info
+ls -a - list hidden
+ls *. - list wilcard based
+cd - change directory
+. - current dir
+.. - parent directory
+mkdir - make directory
+cp - copy
+mv - move
+~ - root directory
+cat - display
+more - display to fit screen
+sort - sort file content
+uniq - unique file content
+> - stdin
+< - stdout
+wc -l - wordcount of file
+who - who is logged in
+pwd - print working directory
+; - execution concatenation
+() - execute as one statement
+ps - processes running
+ps - aef - all processes
+| - filter command
+sed '1,4d' fruit.txt - deletes lines 1 to 4
+sed '/^g/d' fruit.txt - deletes lines starting with g
+sed -n '1p' fruit.txt - prints 1st line
+sed 's/banana/watermelon/gi' - replaces all instances (g) of banana with watermelon irrespective of caps (i)
+sed '1s/apple/peech/gi' - replaces first instance of apple with peech
+sed -e 's/,//g' fruit.txt | sed -e 's/ //g' fruit.txt | sed '/^$/d' fruit.txt  - to remove comma, space and new line.
+head -2 fruit.txt - to get first 2 lines
+tail -3 fruit.txt - to get last 2 lines
+(head -2; tail -2)<fruit.txt - to get first n last 2 lines
+paste fruit* > all_fruits.txt - to get all file contents (named fruit*)into one file
+wc shakespeare.txt - will give count of lines, word, characters
+sed -e 's/ /\'$'\n/g' < shakespeare.txt | sort | sed '/^$/d' | uniq -c | sort -nr |head -10
+ps -aef|cut -c1-8|sort|uniq -c|sort -nr|head -3
+ps -aef|cut -c1-8|sort|grep root|wc -l
+!echo $filename - where filename is a variable that stores the name of a file/anything - this gives the output as filename
+sed -e 's/ /\'$'\n/g' < shakespeare.txt|sort|uniq -c|sort -nr| head -5 > count.txt|sed -e 's/ /d'| cat count.txt- will give sorted uniq top 5 words
+
+
+
+gnuplot:
+gnuplot> set term png
+
+Terminal type is now 'png'
+Options are 'nocrop enhanced size 640,480 font "arial,12.0" '
+gnuplot> set output 'word-count.png'
+gnuplot> set boxwidth 1 relative
+gnuplot> set style data histograms
+gnuplot> set style fill solid 1.0 border -1
+gnuplot> plot [][:0] "count_vs_words" using 1:xticlabels(2)
+                                                           ^
+         all points y value undefined!
+
+gnuplot> plot [][:0] "count_vs_words" using 1:xticlabels(2)
+                                                           ^
+         all points y value undefined!
+
+gnuplot> gnuplot> plot "count_vs_words" using 1:2 with lines
+         warning: Skipping data file with no valid points
+                                                   ^
+         x range is invalid
+
+gnuplot> set logscale y
+gnuplot> plot [][:0] "count_vs_words" using 1:xticlabels(2)
+
+
+numpy:
+numerical python package
+
+AWS: Solutions Architect Associate
+Region: Geaographical Location that consists of two or more than two availablity zones
+Availability Zone: descrete data centre that hosts ec2 with redudant power and connectivity
+Edge Location: AWS end points for caching content like Cloud Front (Content delivery network)
+Compute - EC2 (Elastic compute cloud), EC2 Container Service, Elastic Beanstalk, Lambda , Lightsail, Batch,
+Storage - S3 (simple storage service), EFS (elastic file system), Glacier (archive), snowball (storage box), storage gateway (a local storage point to replicate later into s3)
+Databases - RDS (relational), Dynamo DB (non relational), Elasticache (cache and use like webservices), Red shift (data wearhousing)
+Migration - AWS migration hub, application discovery service, database migration service, server migration service, snowball
+Networking & content delivery -  VPC (virtual private cloud), CloudFront(cache), Route53 (lookup service), API Gateway (create apis). direct connect (dedicated line)
+Developer Tools - code star (code collaboration), codecommit (place to store code), codebuild (code compilation), codedeploy (deployment), code pipeline, x-ray (debug), cloud9 (ide)
+Management Tools - cloud watch, cloudformation (scripting infrastructure), cloudtrail (log changes), config (monitor configurations across), opsworks (sysop chef n puppet), service catalog, systems manager (for ec2 mgr), trusted advisor n inspector (advisor for security), managed services
+Media Services - Elastic Transcoder (video compatability service across all os), media convert (conversion), MediaLive (broadcast), MediaPackage (protects), MediaStore (storage), MediaTailor (targetted advertising)
+Machine Learning -  SageMaker (deep learning), Comprehend (sentiment analysis), DeepLens (artificial wear camera, physical hardware),Lex (alexa service), Machine Learning, Polly (text to voice), Rekognition (recognizes image,video etc), Amazon Translate, Amazon Transcribe (speech recognition),
+Analytics - Athena (analysing s3 etc), EMR (elastic map reduce - processing large amount of data), CloudSearch, ElasticSearch Service, Kinesis (ingesting social media data), Kinesis Video Streams, QuickSight (business intelligence tool), data pipeline (moving between different aws services), Glue (extract,transform n load)
+Security & Identity & Compliance:
+  IAM (Identity & Access Management)
+    https://622146688542.signin.aws.amazon.com/console
+    https://shivaprasad-kyathanatty.signin.aws.amazon.com/console
+    Enable MFA (Multi Factor Authentication)
+    refer Downloads/credentials.csv file for access key and secret key and password for IAM users (sp n mk here)
+
+  , Congito (authenticator), GuardDuty (monitoring malicious activity on aws), Inspector (running security tests), Macie (scan s3 bucket), Certificate Manager (manage SSL certificates), CloudHSM (store private keys), Directory Service (microsoft directory service to aws directory service), WAF - web application firewall(customizable web security rules), Shield (AWS Shield is a managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS), Artifact (AWS Artifact is your go-to, central resource for compliance-related information that matters to you. It provides on-demand access to AWS’ security and compliance reports and select online agreements. Reports available in AWS Artifact include our Service Organization Control (SOC) reports, Payment Card Industry (PCI) reports, and certifications from accreditation bodies across geographies and compliance verticals that validate the implementation and operating effectiveness of AWS security controls. Agreements available in AWS Artifact include the Business Associate Addendum (BAA) and the Nondisclosure Agreement (NDA).)
+Mobile Services:
+  Mobile Hub
+    (The new AWS Mobile Hub (Beta) simplifies the process of building, testing, and monitoring mobile applications that make use of one or more AWS services. It helps you skip the heavy lifting of integrating and configuring services by letting you add and configure features to your apps, including user authentication, data storage, backend logic, push notifications, content delivery, and analytics—all from a single, integrated console.
+    The AWS Mobile Hub helps you at each stage of development: configuring, building, testing, and usage monitoring. The console is feature-oriented; instead of picking individual services you select higher-level features comprised of combinations of one or more services, SDKs, and client code.  What once took a day to properly choose and configure can now be done in 10 minutes or so.)
+  Pinpoint (Amazon Mobile Analytics is now Amazon Pinpoint)
+    Whether you're a developer, marketer, or business user, use Amazon Pinpoint to send targeted messages to your customers through multiple engagement channels. Examples of targeted campaigns are promotional alerts and customer retention campaigns, and transactional messages are messages such as order confirmations and password reset messages.
+    You can integrate Amazon Pinpoint into your mobile and web apps to capture usage data to provide you with insight into how customers interact with your apps. Amazon Pinpoint also tracks the ways that your customers respond to the messages you send—for example, by showing you the number of messages that were delivered, opened, or clicked.
+    You can develop custom audience segments and send them pre-scheduled targeted campaigns via email, SMS, and push notifications. Targeted campaigns are useful for sending promotional or educational content to re-engage and retain your users.
+    You can send transactional messages using the console or the Amazon Pinpoint REST API. Transactional campaigns can be sent via email, SMS, push notifications, and voice messages. You can also use the API to build custom applications that deliver campaign and transactional messages.
+  AWS AppSync
+    AWS AppSync is a serverless back-end for mobile, web, and enterprise applications.
+    AWS AppSync makes it easy to build data driven mobile and web applications by handling securely all the application data management tasks like online and offline data access, data synchronization, and data manipulation across multiple data sources. AWS AppSync uses GraphQL, an API query language designed to build client applications by providing an intuitive and flexible syntax for describing their data requirement.
+  AWS Device Farm
+    AWS Device Farm is an app testing service that lets you test and interact with your Android, iOS, and web apps on many devices at once, or reproduce issues on a device in real time. View video, screenshots, logs, and performance data to pinpoint and fix issues and increase quality before shipping your app.
+AR/VR - Augmented/Virtual Reality
+  Sumerian - Programming Language
+Application Integration
+  Step Functions
+    AWS Step Functions lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly. Using Step Functions, you can design and run workflows that stitch together services such as AWS Lambda and Amazon ECS into feature-rich applications. Workflows are made up of a series of steps, with the output of one step acting as input into the next. Application development is simpler and more intuitive using Step Functions, because it translates your workflow into a state machine diagram that is easy to understand, easy to explain to others, and easy to change. You can monitor each step of execution as it happens, which means you can identify and fix problems quickly. Step Functions automatically triggers and tracks each step, and retries when there are errors, so your application executes in order and as expected.
+  Amazon MQ
+    Amazon MQ is a managed message broker service for Apache ActiveMQ that makes it easy to set up and operate message brokers in the cloud. Message brokers allow different software systems–often using different programming languages, and on different platforms–to communicate and exchange information. Amazon MQ reduces your operational load by managing the provisioning, setup, and maintenance of ActiveMQ, a popular open-source message broker. Connecting your current applications to Amazon MQ is easy because it uses industry-standard APIs and protocols for messaging, including JMS, NMS, AMQP, STOMP, MQTT, and WebSocket. Using standards means that in most cases, there’s no need to rewrite any messaging code when you migrate to AWS.
+  SNS
+    An AWS service that allows you to automate the sending of email or text message notifications, based on events that happen in you AWS account.
+    https://www.youtube.com/watch?v=M4gQ8MLlgiY
+  SQS
+    Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. SQS eliminates the complexity and overhead associated with managing and operating message oriented middleware, and empowers developers to focus on differentiating work. Using SQS, you can send, store, and receive messages between software components at any volume, without losing messages or requiring other services to be available. Get started with SQS in minutes using the AWS console, Command Line Interface or SDK of your choice, and three simple commands.
+    SQS offers two types of message queues. Standard queues offer maximum throughput, best-effort ordering, and at-least-once delivery. SQS FIFO queues are designed to guarantee that messages are processed exactly once, in the exact order that they are sent.
+  SWF
+    Amazon SWF helps developers build, run, and scale background jobs that have parallel or sequential steps. You can think of Amazon SWF as a fully-managed state tracker and task coordinator in the Cloud.
+    If your app's steps take more than 500 milliseconds to complete, you need to track the state of processing, and you need to recover or retry if a task fails, Amazon SWF can help you.
+Customer Engagement
+  Connect
+    Owning a Call centre
+  Simple Email Service
+    Sending large number of emails
+Business Productivity
+  Alexa For Business - voice based business service
+  Chime - Like zoom meetings
+  WorkDocs - Like drop box
+  WorkMail - Like Gmail
+Desktop & App Streaming
+  Workspaces
+    Desktop as a Service
+  AppStream 2.0
+    Application stream (App Store)
+Internet of Things (IOT)
+  iOT - Temperature, Humidity etc..
+  iOT Device Management
+  Amazon FreeRTOS - OS for MicroControllers
+  Greengrass
+Game Development
+  GameLift
+
+
+Inscope for SA Associate:
+  AWS Global Infrastructure
+  Compute
+  Storage
+  Databases
+  Migration
+  Networking & Content Delivery
+  Management Tools
+  Analytics
+  Security&Identity&Compliance
+  Application Integration
+  Desktop & App Streaming
+
+Creative excercise:
+  Tongue Twisters
+    Unique New York
+    Red Leather, Yellow Leather
+    Red Bulb Blue Bulb Red Bulb Blue Bulb Red Bulb Blue Bulb
+    She sells seashells on the seashore.
+    A proper copper coffee pot.
+
+  Introductions & Applause
+  Walk Music Freeze Perform
+  Leg shaking
+  keep walking
+  laughing while walking
+  sit and laughing
+  sad while walking
+  sit and be sad
+  make sound and walk
+  sit and make sound
+  clap and walk
+  sit and clap
+  tap the shoulders making sound like baa....
+  tap the thighs making sound like dii.....
+  group readings while tapping the legs
+  voice excercise (taking the hand from bottom to high and asking participants to say oh..oh.... and then modulate the hand to modulate the voice)
+  mimic
+  ask kids to come forward and say who is their favourite cartoon character and say in the same cartoon character's voice their name and where they studying and what they studying..  (observe body language and make comments.. try to be natural)
+  say "i had upma in the morning"
+  shringara(love), haasya (laughter), karuna (sorrow), raudra(anger), veera (courage), bhayanak(fear), bibhathsya (disgusted), adhbutha (surprised), shantha (peace)
+  chinthith (anxious),aalsi (lazy), nasha (intoxicated), gapshap (gossip), edusiru (pant)
+
+  Monologue:
+  Final Good Bye!
+  SAM: Hey Buddy, listen, I came here to tell you it’s my last day. Do you hear me? We’re leaving tomorrow, my mum and dad are packing our suitcases now.
+  I’m terrified to leave you. What are you gonna do without me here? Chained to the ground like this? You’ve changed my life, my whole life during this past week and I’m going to miss you more than anything. But I want you to know one thing, you may be cold some days, lonely, tired but you’ll never be forgotten, I’ll always remember you, for as long as I live.
+  I wish I could save you, but I can’t, they won’t let me take you, Buddy. Do you remember the star that we saw last night?  That’s us together, in another place…far away from here.
+
+SOLR:
+  $cd Downloads/solr-7.5.0/
+  $bin/solr start -e cloud
+  $bin/solr stop -p 8983
+  bin/post -c techproducts example/exampledocs/*
+
+
+
+
+1. Check if all steps in solr run completed
+2. copy the solr end point and check if the core exists
+3. once confimed check if status is checked for optimized and current
+4. run solr warmup through screen
+5. mysql> update config_repo_arp.config_repo set attr_value="http://10.54.199.71:8983/solr/emr-all-20181201" where attr_key like "%lucene%" and institute="OER";
+6. mysql> update config_repo_arp.config_repo set attr_value="http://10.54.199.71:8983/solr/emr-all-20181201" where attr_key like "%lucene%";
+7. mysql> update config_repo_student_exp.config_repo set attr_value="http://10.54.199.71:8983/solr/emr-all-20181201" where attr_key like "%lucene%";
+8. login to aws, goto ec2, click on load balanacers, search "prod-solr-appelb-003-004-n", goto instances, click on edit instances, click on name to sort by name, select newly ran solr end point, click submit, refresh screen 5 to 6 times until the status shows "inservice", remove prod-solr-app005 instance from the load balancer
+9. login to workspace ec2 (10.54.198.91) and then go to /mnt/solrtransfer, open screener and run transfer script example "python solrtransferfrom007to005_f1.py"
+10. once transfer is completed, run warmup
+11. login to workspace ec2 (10.54.198.91) and then run solr warmup through screen for 005
+once warmup is completed, change elb instances
+12. login to aws, goto ec2, click on load balanacers, search "prod-solr-appelb-003-004-n", goto instances, click on edit instances, click on name to sort by name, select newly ran solr end point, click submit, refresh screen 5 to 6 times until the status shows "inservice", add prod-solr-app005 and new instance in the load balancer and remove old instance
+13. change the attr_value in config_repo
+mysql> update config_repo_arp.config_repo set attr_value="http://internal-prod-solr-appelb-003-004-n-1117191480.us-east-1.elb.amazonaws.com:8983/solr/emr-all-20181201" where attr_key like "%lucene%" and institute="OER";
+14. mysql> update config_repo_arp.config_repo set attr_value="http://internal-prod-solr-appelb-003-004-n-1117191480.us-east-1.elb.amazonaws.com:8983/solr/emr-all-20181201" where attr_key like "%lucene%";
+15. mysql> update config_repo_student_exp.config_repo set attr_value="http://internal-prod-solr-appelb-003-004-n-1117191480.us-east-1.elb.amazonaws.com:8983/solr/emr-all-20181201" where attr_key like "%lucene%";
+
+
+
+
+AWS - Cloud Practitioner:
+Elasiticity, Sacalability, Performance, Security, Reliability, Pay as you go pricing
+Agility:
+  Speed, Experimentation, Innovation
+Global Infrastructure:
+  Regions:
+    19 Locations around the world
+    Has 2 or more AZs
+  Availability Zone: 57 AZs
+    Descrete data centre
+    physically distinct, own uninterruptible power supply, cooling equipment, backup generators, networking connectivity
+    isolated from one another to protect from failures
+  Edge Locations:
+    content delivery framework- amazon cloud front, deliver content to customers faster
+    To deliver content to end users with lower latency, Amazon CloudFront uses a global network of 150 Points of Presence (139 Edge Locations and 11 Regional Edge Caches) in 65 cities across 29 countries.
+VPC
+  think of vpc as a virtual data centre in the cloud
+  Virtual Private Cloud
+  A private cloud
+  VPC lives within a region
+  Multiple VPCs per account
+  Subnets divide VPC
+  Subnets allows VPC to span multiple AZs
+  Route tables controls the traffic going out of subnets
+  Internet gateway allows private subnet resources to access internet
+  Network access control lists control access to subnets
+  public subnet can be connected with internet
+  private subnet can be connected with vpn
+  each subnet will be in different AZ
+  ranges available:
+    10.0.0.0 (10.255.255.255)
+    172.16.0.0 (172.31.255.255)
+    192.168.0.0 (192.168.255.255)
+  check out http://cidr.xyz/ for planning ip range
+Read Replica - RDS Data Redundancy
+S3 : S3 Standard
+     S3 IA
+     S3 OneZone IA
+     Glacier
+
+
+COURSE COPY:
+$ ssh ubuntu@10.54.200.84
+# start screen
+$ screen -S coursecopy
+$ cd /home/ubuntu/debojit
+# for running complete list of course copy from oer to gcmp
+$python allcoursecopy_fromoertogcmp.py
+# for running exclusive list of course copy from oer to gcmp, enter course_ids in oer_course_list
+$python selectcoursecopy_fromoertgcmp.py
+
+
+
+
+
+mysqldump -uroot -hstg-20180706-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 --single-transaction=TRUE --quick --opt centralized_content source | gzip > source.sql.gz | s3cmd put source.sql.gz s3://finalsolrdocsintellus/sqldump/
+
+mysqldump -uroot -hse-db.prod-se.aws.learningace.com -paceuser123 config_repo_arp config_repo --where="institute = 'INTELLUS-LITE'" > config_repo.sql
+mysql -uroot -hstg-20190110-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 tmp < config_repo.sql
+
+
+mysqldump -uroot -hse-db.prod-se.aws.learningace.com -paceuser123 config_repo_student_exp config_repo --where="institute = 'INTELLUS-LITE'" > config_repo.sql
+mysql -uroot -hstg-20190110-prodcopy.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 tmp < config_repo.sql
+
+
+mysql -uroot -hpm1agvazfmbl7b2.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 -B -e 'select * from tmp.library_stats;'| sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" >  library_stats.csv
+
+mysql -uroot -hpm1agvazfmbl7b2.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 -B -e 'select * from tmp.institute_subsource_curate;'| sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" >  institute_subsource_curate.csv
+
+mysql -uroot -hpm1agvazfmbl7b2.cxen17t6uhqr.us-east-1.rds.amazonaws.com -paceuser123 -B -e 'select * from centralized_content.subsource where source_id in (101,102);'| sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" >  library_subsources.csv
+
+
+
+
+
+iClicker:
+db.getCollection('question').find({_id:JUUID("9479d7f7-d937-4000-afce-42afff18ca46")})
+db.getCollection('session').find({_id: JUUID("289b67aa-315b-42d2-af59-37894d6c2df8")})
+
+https://console.aws.amazon.com/s3/object/qa-reef-education/attachments/course/e4210fd6-b3e4-43df-9b7e-c143f67f89a7/289b67aa-315b-42d2-af59-37894d6c2df8/646e4fb8-04b5-4fbc-a99e-6ce1c8e0d357?region=us-east-1&tab=overview&prefixSearch=646e4fb8-04b5-4fbc-a99e-6ce1c8e0d357
+
+
+
+to get non empty attachments:
+db.getCollection('question').find({"attachments":{$exists:true,$ne:[]}})
+
+
+db.question.aggregate([
+  { "$sort": { "dateAdded": -1 } },
+  { "$limit": 20 },
+  { "$lookup": {
+    "localField": "sessionId",
+    "from": "session",
+    "foreignField": "_id",
+    "as": "sessioninfo"
+  } },
+  { "$unwind": "$sessioninfo" },
+  { "$project": {
+    "sessioninfo.courseId": 1,
+      "sessionId": 1,
+      "attachments": 1
+  } }
+]);
+
+
+
+to export to a tmp collection:
+
+db.question.aggregate([
+  { "$sort": { "dateAdded": -1 } },
+  { "$limit": 20 },
+  { "$lookup": {
+    "localField": "sessionId",
+    "from": "session",
+    "foreignField": "_id",
+    "as": "sessioninfo"
+  } },
+  { "$unwind": "$sessioninfo" },
+  { "$project": {
+    {courseId:"$sessioninfo.courseId"}: 1,
+      {sessionId:"$sessionId"}: 1,
+      "attachments": 1
+  } },
+  { $out: "tempCollection"}
+]);
+
+
+
+mongoexport --db reef --collection question --query 'db.question.aggregate([{ "$sort": { "dateAdded": -1 } },{ "$limit": 20 },{ "$lookup": {"localField": "sessionId","from": "session","foreignField": "_id","as": "sessioninfo"} },{ "$unwind":"$sessioninfo" },{ "$project": {{courseId:"$sessioninfo.courseId"}: 1,{sessionId:"$sessionId"}: 1,"attachments": 1 } },{ $out: "tempCollection"}]);' --out /Downloads/tempCollection.json
+
+
+
+mongoexport -h 192.178.1.28:27017 --db reef --collection question -u shiva -p Intellus-022 --query 'db.question.aggregate([{ "$sort": { "dateAdded": -1 } },{ "$limit": 20 },{ "$lookup": {"localField": "sessionId","from": "session","foreignField": "_id","as": "sessioninfo"} },{ "$unwind":"$sessioninfo" },{ "$project": {{courseId:"$sessioninfo.courseId"}: 1,{sessionId:"$sessionId"}: 1,"attachments": 1 } },{ $out: "tempCollection"}]);' --out /Downloads/tempCollection.json
+
+
+ mongoexport -h 192.178.1.28:27017 --db reef --collection question -u shiva -p Intellus-022 --query '{db.question.aggregate([{ "$sort": { "dateAdded": -1 } },{ "$limit": 20 },{ "$lookup": {"localField": "sessionId","from": "session","foreignField": "_id","as": "sessioninfo"} },{ "$unwind":"$sessioninfo" },{ "$project": {{courseId:"$sessioninfo.courseId"}: 1,{sessionId:"$sessionId"}: 1,"attachments": 1 } }]);}' --out tempCollection.csv
+
+
+
+
+db.question.aggregate([
+  { "$sort": { "dateAdded": -1 } },
+  { "$limit": 20 },
+  { "$lookup": {
+    "localField": "sessionId",
+    "from": "session",
+    "foreignField": "_id",
+    "as": "sessioninfo"
+  } },
+  { "$unwind": "$sessioninfo" },
+  { "$project": {
+    "sessioninfo.courseId": 1,
+      "sessionId": 1,
+      "attachments": 1
+  } }
+]);
+
+
+mongoexport -h 192.178.1.28:27017 --db reef --collection question -u shiva -p Intellus-022 --query 'db.question.aggregate([ { "$sort": { "dateAdded": -1 } }, { "$limit": 20 }, { "$lookup": { "localField": "sessionId", "from": "session", "foreignField": "_id", "as": "sessioninfo" } }, { "$unwind": "$sessioninfo" }, { "$project": { "sessioninfo.courseId": 1, "sessionId": 1, "attachments": 1 } } ]);' --out tempCollection.csv
+
+
+mongo -u shiva -p Intellus-022 192.178.1.28/reef
+
+
+format:
+s3://reef-prod-storage/attachments/course/course_id/session_id/attachment_id
+
+sample:
+https://reef-prod-storage.s3.amazonaws.com/attachments/course/a3bf72e5-2d7f-4f9d-9e39-915d81924436/f5d0f48c-d8a5-4d23-bdf9-65b60545b6a9/a74e92cb-a409-4df1-93b2-246669f984a7
+
+
+aws s3 cp s3://reef-prod-storage/attachments/course/b6082771-44e5-4f4b-8720-2e4c6078f196/3fc9a96f-c9ea-43fc-a342-45bcea544d29/eb73eb44-5b3c-421f-8d23-ad522b2a31f9 . --profile iclicker

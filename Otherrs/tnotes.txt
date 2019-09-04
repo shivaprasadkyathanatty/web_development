@@ -1,0 +1,579 @@
+Jan 2019
+Research:
+  CO-545 Khan Academy records with domain as "iwu.equella.ecollege.com"
+  CO-544 Research on non youtube resources marked with youtube source
+  CO-516 Lumen Learning - assets with home page url
+  CO-502 Crawl: Open Learning - Open University
+  CO-475 Please confirm dedup_signifier for source_id 1120
+  CO-437 Difference between "Article" and "Article/Journal"
+  CO-395 Check for document usage before marking for delete
+  CO-177 Digging into resource to expand library
+  CO-168 Same textbook from different repositories
+
+New Crawl:
+  CO-495 Crawl Directory of Open Access Books
+  Related to EPIC: CO-496 Crawl: Openly Available Sources Integrated Search (OASIS)
+      http://ocw.umb.edu/  (course repo)
+      https://uknowledge.uky.edu/agecon_textbooks/ (ebooks)
+      https://aimath.org/textbooks/approved-textbooks/ (ebooks)
+      https://academicworks.cuny.edu/oers/ (ebooks)
+      https://open.ems.psu.edu/ (courses)
+      https://see.stanford.edu/ (courses)
+      https://digitalcommons.trinity.edu/textbooks/ (ebooks)
+      http://pressbooks.oer.hawaii.edu/ (ebooks)
+      https://www.wdl.org/ ((documents)
+      http://podcasts.ox.ac.uk/open/all (audio n video content ebooks)
+      http://openaccessbooks.nyupress.org/
+
+Client:
+  Update Pearson links for broken mediaassets.intelluslearning.com links
+
+Library:
+  EBSCO -  Palani
+  Proquest - Palani
+  Credo
+
+Other Key Ones:
+  New Institute Creation - Somebuddha
+  Solr Build - Mukul
+  Iframe Buster Queries - Mukul
+  Report Generation - SSV
+  Course Creation  - SSV
+  Docpipe - SSV
+
+Licensing Cleanse:
+	CO-547 Licensing Cleanse: PubMedCentral
+
+
+Future New Crawl:
+	Create EPIC CO-555 https://acelearningco.atlassian.net/browse/CO-555 Crawl: American Institute of Mathematics
+	Create EPIC CO-495 https://acelearningco.atlassian.net/browse/CO-495 Crawl: Directory of Open Access Books
+
+Old be1 server decommissioning:
+
+Creating Course:
+	CO-541 TUDelft
+
+with Gaurav:
+ARP-5470
+
+create leave page for the year
+somebuddha - 2nd and 3rd Jan
+mukul - 16th Jan,01Feb
+
+
+
+learning_path_item
+asset_db_item
+user_archived_document
+user_document_rating
+favorite_document
+arp_user_document_rating
+
+
+
+Feb 2019:
+Somebuddha:
+	NASA (articles,single document ebooks) - Done - complex https://acelearningco.atlassian.net/browse/CO-580
+	meson press (single document ebooks) - Done - easy
+	directory of open access books (single document ebooks) - Done - complex
+	EDP Open (ebooks) - course creation - in progress - medium
+	cnx.org - done
+	iframe buster queries - Ongoing
+	open knowledge repository (patch up work) - Done
+
+Mukul:
+	oapen (single document ebooks) - Done - easy
+	NASA (youtube videos) - Done - very easy
+	MDPI (journals) CO-584 - Done - complex
+	Elgaronline (ebooks) - Done - easy
+	new institute creation - Ongoing
+
+Palani:
+	EBSCO (co-510)
+	Proquest (co-513)
+	Credo
+	FOD (CO-575)
+	Keyterms
+SSV:
+	Docpipe
+	Course Creation
+	Report Generation
+R&D:
+	CO-544 Research on non youtube resources marked with youtube source
+  	CO-516 Lumen Learning - assets with home page url
+  	CO-502 Crawl: Open Learning - Open University
+  	CO-475 Please confirm dedup_signifier for source_id 1120
+  	CO-437 Difference between "Article" and "Article/Journal"
+  	CO-177 Digging into resource to expand library
+  	CO-168 Same textbook from different repositories
+	update course_source_id for gcmp courses (CO-571)
+	dedup_signifier for source_id 103 (CO-576)
+	abstract missing for credo source_id 1120 (CO-577)
+	thumnail cleanup
+
+Open Crawl Tickets:
+	Oregon State University (courses) (CO-588)
+	Oregon State Univesity (single document ebooks) (CO-589)
+For future tickets:
+	The california State University: http://www.cool4ed.org/
+	Shiva: Produce stats for proquest and ebsco
+	Shiva: Non standard document urls
+	Shiva: Youtube transcript crawl and document_text
+
+For March:
+	Somebuddha:
+		Crawl IOS Press Ebooks (ebooks/courses) CO-581 - complex
+		Crawl Oregon State University (courses) CO-588- complex
+		world scientific (articles) - easy CO-578
+		FEMA
+		has_iframe_buster - ongoing
+		cnx.org
+
+	Mukul:
+		Crawl frontiers (Science Journals) CO-585 - medium
+		Research on non youtube resources marked with youtube source -CO-544 - medium
+		pa11y value population for all existing achecker (create temp table with doc_seq_id and pa11y values) -CO597 medium
+		licensing cleanse (co-547) - done  - medium
+		solr build - Ongoing
+		new institute creation - Ongoing
+
+	Palani:
+		Youtube Mega Cleanse (CO-596)
+		EBSCO
+		Proquest
+		Credo
+	SSV:
+		Docpipe
+		Course Creation
+		Report Generation
+	Shiva:
+		Copy IOC courses from TRIAL to OER and GCMP (CO-595)
+	R&D:
+		Lumen Learning - assets with home page url CO-516
+	  	Crawl: Open Learning - Open University CO-502
+	  	Digging into resource to expand library CO-177
+	  	abstract missing for credo source_id 1120 (CO-577)
+	  	dedup_signifier - mega cleanse
+		thumnail - mega cleanup
+
+
+Apr 2019:
+	Somebuddha:
+	IOS Press Ebooks (single document ebooks) -
+
+	Mukul:
+	Univeristy of North Texas (Articles) - In Progress - CO583 - medium
+
+
+Shiva;
+https://www.doabooks.org/doab?func=publisher&uiLanguage=en
+
+
+
+Apr 2019:
+Derived from: https://acelearningco.atlassian.net/browse/CO-613
+
+	Somebuddha:
+		CO-612 New OER: Catalyzing Computing and Cybersecurity in Community Colleges (C5) - Done
+		CO-615 New ebook OER: Internet Archive - In Progress
+				83 Million data -
+					23 Million distinct
+						1.6 Million books that should be set for crawling (some will be open, not all from this set)
+		CO-624 Crawl: Open Access Theses and Dissertations - In Progres
+				after 600K it blocked, search for proxies (sleeptime/ 2sec,10/20 sec - suggested 30/60sec and split)
+		CO-625 Crawl: Academic Journals - Done
+
+	Mukul:
+		CO-583 Crawl University of North Texas (Articles) - In progress
+				will be completed this week (27Apr)
+		CO-616 New digital archive source: Library of Congress - In Progress
+				will be moved to next month
+		CO-618 Crawl Youtube User: LibraryOfCongress - To Do
+		CO-623 New OER: the National Bureau of Economic Research - In Progress
+
+		bandwidth to crawl youtube (shiva to share list)
+
+	SSV:
+		CO-596 Youtube records: Mega Cleanse
+			(feedback awaiting on issues raised related to duplicates)
+		Docpipe
+			(proquest awaiting)
+		Course creation
+			(stg replication)
+
+		OhioUniversity(new institute setup):
+			request for additional metadata csv (ebook central)
+		books24*7 cleanse
+			youtube assets need to be changed to 9
+
+	Palani:
+		CO-601 EBSCO Crawl: Latest Data (30Sep2018 to 15Mar2019) - Done
+		CO-602 Proquest Crawl: Latest Data (30Sep2018 to 15Mar2019) - In progress
+		CO-626 Credo Reference - Data Refresh - Done
+
+
+Challenges:
+
+dead assets part of psychology course, how to get alternate assets
+	neha : spoke to sme
+
+gaurav: relevant resulsts - collections ,  coursespplhavecurated (no library,no useruploaded)
+	shiva: updated the ticket: https://macmillanlearning.atlassian.net/browse/SSD-276
+
+		ebooks(oer) - get confirmation from webster/neha
+		ssv: explore records from oercommons (openstax alternates)
+			to share list of resources for intelluslite courses - shiva to qc and take forward with neha
+
+
+May 2019:
+
+Pending Tickets
+Jinho:
+  Content topics don't match Chapters when textbook selected in outline view
+  https://acelearningco.atlassian.net/browse/CO-56
+  IDU_Bug
+  https://acelearningco.atlassian.net/browse/CO-114
+  Good-Quality and Bad-Quality Content?
+  https://acelearningco.atlassian.net/browse/CO-138
+  Replace duplicate topic_id with canonical topic_id
+  https://acelearningco.atlassian.net/browse/CO-149
+
+SSV:
+  Add ISBN to "Popular STEM Titles" Tab of GoogleDoc.
+  https://acelearningco.atlassian.net/browse/CO-32
+  Alt code symbol issues in resource titles
+  https://acelearningco.atlassian.net/browse/CO-176
+  Difference between "Article" and "Article/Journal"
+  https://acelearningco.atlassian.net/browse/CO-437
+Neha:
+  New Library Source: Columbia University Press for APUS
+  https://acelearningco.atlassian.net/browse/CO-77
+Shiva:
+  Same textbook from different repositories
+  https://acelearningco.atlassian.net/browse/CO-168
+  Digging into resource to expand library
+  https://acelearningco.atlassian.net/browse/CO-177
+  bookboon.com Content requires Login
+  https://acelearningco.atlassian.net/browse/CO-223
+  Debug APUS Alexander Street Issue
+  https://acelearningco.atlassian.net/browse/CO-228
+Webster:
+  Request: APUS Jstor Credentials
+  https://acelearningco.atlassian.net/browse/CO-183
+  Determine how to identify premium/paid assets
+  https://acelearningco.atlassian.net/browse/CO-423
+Anna:
+  Proquest_APUS
+  https://acelearningco.atlassian.net/browse/CO-591
+  Marc File Processing : Films on Demand for GATECH
+  https://acelearningco.atlassian.net/browse/CO-378
+Somebuddha:
+  Crawl: Open Access Theses and Dissertations
+  https://acelearningco.atlassian.net/browse/CO-624
+  Status: 600K records crawled so far, and is running
+  Crawl: DART-Europe Theses/Dissertations Portal
+  https://acelearningco.atlassian.net/browse/CO-632
+  Status: Crawling in progress
+  Crawl: New ebook OER: Internet Archive
+  https://acelearningco.atlassian.net/browse/CO-615
+  Status: Found ebooks list, crawling metadata (2 Million)
+  Crawl New OER Source: New Deal for the Arts from National Archive
+  https://acelearningco.atlassian.net/browse/CO-284
+  Status: In progress
+  Research:
+  Login page issues with Intellus Open Courses
+  https://acelearningco.atlassian.net/browse/CO-607
+  Merlot(Source_id =400) Data cleanup
+  https://acelearningco.atlassian.net/browse/CO-604
+  UMN Open textbooks duplicate verification
+  https://acelearningco.atlassian.net/browse/CO-519
+
+Scott:
+  Extract & Review "Hidden" Content for Next Steps.
+  https://acelearningco.atlassian.net/browse/CO-55
+
+Palani:
+  EBSCO Crawl: Latest Data (16Mar2019 to 05May2019)
+  https://acelearningco.atlassian.net/browse/CO-631
+
+Mukul:
+ 1st triannual Data refresh -2019
+ https://acelearningco.atlassian.net/browse/CO-630
+
+
+
+
+
+
+
+https://www.oercommons.org/groups/designing-business-ethics-courses/443/
+https://www.open.edu/openlearn/history-the-arts/culture/philosophy/business-ethics
+https://study.com/academy/course/business-ethics.html#exam
+https://www.universalclass.com/i/course/business-ethics-101.htm
+https://www.moralmarkets.org/2017/4-online-courses-business-ethics/
+https://www.scu.edu/ethics/focus-areas/business-ethics/resources/
+https://managementhelp.org/businessethics/index.htm
+http://www.openculture.com/business_free_courses
+https://www.youtube.com/playlist?list=PLtXf43N26ZieRz-WuxVmpcyeRzBb23RAY
+
+https://hbr.org/1993/05/whats-the-matter-with-business-ethics
+
+https://www.aacu.org/publications-research/periodicals/business-ethics-undergraduate-education
+https://www.rims.org/resources/Pages/RIMScast.aspx
+https://www.scu.edu/ethics/focus-areas/business-ethics/resources/
+https://businesscasestudies.co.uk/teacher-resources/
+
+
+=================
+http://libguides.humboldt.edu/openedu/ba
+https://www.open.edu/openlearn/search-results?as_q=introduction+to+business
+https://irsc.libguides.com/business/OER
+
+https://www.youtube.com/watch?v=VVJ2lmieNGg
+https://www.youtube.com/channel/UCWmupHfV6xuPRFEkwM0l-zQ/videos
+https://irsc.libguides.com/business/OER
+https://nmc.libguides.com/oer/business
+https://www.baycollege.edu/academics/academic-resources/open-education.php
+https://libguides.unf.edu/c.php?g=358621&p=6029860
+http://researchguides.smu.edu.sg/OER/business
+https://oeru.org/introduction-to-project-management/
+https://libguides.humboldt.edu/openedu/lead
+
+==================
+
+https://www.youtube.com/user/Subjectmoney/playlists
+https://www.youtube.com/user/TepperCMU/playlists
+https://www.youtube.com/channel/UCs-J2JVrQnK38C0ZbPWqV4A/videos
+https://www.youtube.com/channel/UCe83jLdZ3PuqVwAHe6B3U2A/playlists
+
+https://www.tutor2u.net/psychology/collections
+https://www.youtube.com/watch?v=0PokyYvuL7Q&list=PLp8BSCLLWBUCuyMc0-2cHFid4x1xuXoQM
+
+https://www.youtube.com/watch?v=OcqxEjmGT00
+https://www.youtube.com/watch?v=Xd_pgHkTyME
+https://www.youtube.com/watch?v=LISS7Qu4T1U
+https://www.youtube.com/watch?v=vbmoDBcSI4s
+https://www.youtube.com/watch?v=_CI61Kxvx-Q
+https://www.youtube.com/watch?v=8jxRRb7UX2Y
+
+https://www.youtube.com/playlist?list=PL4AE76B235A9EB6FE
+
+https://www.youtube.com/watch?v=AkjsrJNdIR4
+https://www.youtube.com/watch?v=EK1ak9lXLo8
+
+https://www.youtube.com/watch?v=Lww8I1_nNoA
+https://www.youtube.com/watch?v=jvyb5k4OLQ0
+
+https://www.youtube.com/user/unecommunications/playlists
+https://www.youtube.com/watch?v=nu05wHnu88Q&list=PLb47UUNms3TfR2NfBpcnFVh-Iorcvhg6l
+
+
+https://www.youtube.com/watch?v=KEn2HoCen_0&list=PL3Y_p3e-Lne17XsOI2-oVLee4boiXBanx
+https://www.youtube.com/channel/UCZi62rnxEukk_WLHDEq8SyA/videos
+
+https://www.studocu.com/en/course/university-of-saskatchewan/introduction-to-business/1676147
+
+http://www.openculture.com/business_free_courses
+
+
+https://www.youtube.com/watch?v=B40JGsMe2Yo&list=SP881C1F27782297D6&index=1
+
+https://eric.ed.gov/?q=%22personal+finance%22
+http://blog.post.edu/2017/08/7-great-educational-search-engines-for-college-students/
+http://opencourselibrary.org/
+https://pitt.libguides.com/openeducation/biglist
+https://www.linkedin.com/learning/me
+https://www.opencolleges.edu.au/informed/features/free-online-courses-50-sites-to-get-educated-for-free/
+
+================
+
+https://alison.com/topic/learn/33531/business-ethics-four-disciplines
+
+
+Found a domain which has a lots of courses with proper course structure and videos
+Says courses are free
+Please see https://www.classcentral.com/subjects
+Class CentralClass Central
+Browse free online courses and MOOCs by Subjects
+Browse MOOCs by Subjects
+Shivaprasad Kyathanatty [4:24 PM]
+oh sure, please share
+ssv [4:24 PM]
+may be we will need free sign up - but
+I thought we can get the course structure and stuff assets using OER content ( may be solr search )
+For example:
+https://www.coursera.org/learn/wharton-marketing
+CourseraCoursera
+Introduction to Marketing | Coursera
+Learn Introduction to Marketing from University of Pennsylvania. Taught by three of Wharton's top faculty in the marketing department, consistently ranked as the #1 marketing department in the world, this course covers three core topics in ...
+you can see weeks - having course materials
+ex:
+BRANDING: Marketing Strategy and Brand Positioning
+Shivaprasad Kyathanatty [4:27 PM]
+correct
+looks good
+ssv [4:28 PM]
+7 videos
+Marketing 101: Building Strong Brands Part I15m
+Marketing 101: Building Strong Brands Part II4m
+Strategic Marketing11m
+Segmentation and Targeting12m
+Brand Positioning12m
+Brand Mantra: The Elevator Speech9m
+Experiential Branding13m
+Shivaprasad Kyathanatty [4:28 PM]
+let me share with neha
+and see what she thinks
+will create a ticket
+and track
+looks good
+ssv [4:33 PM]
+Once we have the course structure - we can search in SOLR - and get the related assets per chapter / week
+ex:
+http://10.54.199.117:8983/solr/emr-20190420/select?q=GO%20TO%20MARKET%20STRATEGIES%20Online-Offline%20Interaction%20&%20How%20to%20Find%20Lead%20Users%20and%20Facilitate%20Influence%20and%20Contagion%20Introduction%20and%20Execution
+Shivaprasad Kyathanatty [4:35 PM]
+yeah
+good idea
+thanks @ssv
+ssv [4:36 PM]
+welcome
+Hi @shivaprasad
+There is another GIT link  which has a lot of courses - some of them archived
+https://github.com/prakhar1989/awesome-courses
+prakhar1989/awesome-courses
+:books: List of awesome university courses for learning Computer Science!
+Stars
+29281
+Last updated
+an hour ago
+prakhar1989/awesome-coursesNov 16th, 2014Added by GitHub
+ssv [4:48 PM]
+Also - this YouTube user has a lot of  channels with educational   videos
+https://www.youtube.com/user/coursera/playlists
+YouTubeYouTube
+Coursera
+Learn online and earn valuable credentials from top universities like Yale, Michigan, Stanford, and leading companies like Google and IBM. Join Coursera for ...
+Shivaprasad Kyathanatty [5:18 PM]
+sure, will check
+prakhar1989/awesome-courses
+:books: List of awesome university courses for learning Computer Science!
+Stars
+29561
+Last updated
+17 minutes ago
+prakhar1989/awesome-coursesNov 16th, 2014Added by GitHub
+Class Central
+Browse free online courses and MOOCs by Subjects
+Browse MOOCs by Subjects
+Coursera
+Introduction to Marketing | Coursera
+Learn Introduction to Marketing from University of Pennsylvania. Taught by three of Wharton's top faculty in the marketing department, consistently ranked as the #1 marketing department in the world, this course covers three core topics in ...
+
+
+
+
+
+pending for Neha:
+https://acelearningco.atlassian.net/browse/CO-623
+ there are some textbooks with less than 5 assets and Shivaprasad Kyathanatty asked me to create google sheet with details of these books. Should we create courses for these?
+
+https://acelearningco.atlassian.net/browse/CO-602
+above 57 databases from proquest are not crawled till date out of which 22 have got data from year 2010.  Should any of these databases be prioritized for crawling? Note: these are subscribed by either of these institutes (APUS/TROY/KENNESAW).
+
+
+Jul 2019
+Crawling
+Somebuddha:
+	4 Crawling
+		https://www.baycollege.edu/academics/academic-resources/open-education.php
+		globaledge:
+			https://globaledge.msu.edu/reference-desk/online-course-modules/doing-business-in
+			https://globaledge.msu.edu/reference-desk/online-course-modules/archived-modules
+			https://globaledge.msu.edu/reference-desk/online-course-modules/exporting
+		https://www.open.edu/openlearn/money-management/free-courses
+		https://businesscasestudies.co.uk/teacher-resources/
+		Crawl: DART-Europe Theses/Dissertations Portal
+			https://acelearningco.atlassian.net/browse/CO-632
+	In Progress:
+		Crawl: Open Access Theses and Dissertations
+			https://acelearningco.atlassian.net/browse/CO-624
+
+
+Mukul:
+	4 Crawling
+		http://irsc.libguides.com/openeducationalresources
+		https://nmc.libguides.com/oer/business
+		https://libguides.unf.edu/c.php?g=358621&p=6029860
+		Crawl Youtube Videos for Intellus Lite Courses Chapter Titles and Keyterms
+			https://acelearningco.atlassian.net/browse/CO-611
+	In Progress:
+		https://acelearningco.atlassian.net/browse/CO-630
+		https://acelearningco.atlassian.net/browse/CO-618
+
+
+SSV:
+	Docpipe,IntellusLite,CourseCreation
+	Abstract is missing for credo (Source 1120)
+		https://acelearningco.atlassian.net/browse/CO-577
+	Please confirm dedup_signifier for source_id 103
+		https://acelearningco.atlassian.net/browse/CO-576
+Palani:
+	Library Crawling
+
+
+Brydin:
+	New OER: the National Bureau of Economic Research
+		https://acelearningco.atlassian.net/browse/CO-623
+	Proquest Crawl: Latest Data (30Sep2018 to 15Mar2019)
+		https://acelearningco.atlassian.net/browse/CO-602
+
+
+
+
+Shoppy@*1721
+
+
+
+completion of apus proxy changes for all apus uploaded content and library content
+lumen learning recrawl completion
+partial completion of proquest crawl
+
+
+
+
+https://www.youtube.com/watch?v=T5pRlIbr6gg&list=PL2-dafEMk2A6QKz1mrk1uIGfHkC1zZ6UU
+https://www.datacamp.com/tracks/data-scientist-with-python
+https://www.dataquest.io/subscribe/
+https://docs.djangoproject.com/en/2.2/topics/db/models/
+
+
+50% efficiency increase in docpipe process - from 40 hours to 20 hrs
+	downloadable document table management
+	youtube meta all - missing cc fields
+
+pa11y - anna to get back for credo reference
+
+open course learning - confirm if its crawled
+
+
+ioc course cleaning completed
+video bug is fixed
+
+dead video will be removed from carousel "free content we love"
+
+
+refresh document_url for all oer content
+	if document_url is active:
+		if document_url is landing on login page:
+			mark record deleted and check for curation:
+			if curated:
+				share details of curation
+	if document_url is not active:
+		mark record deleted and check for curation:
+			if curated:
+				share details of curation
+	if document_url is redirecting:
+		change document_url
+		update pa11y values for the new document_url
+		update has_iframe_buster for the new document_url

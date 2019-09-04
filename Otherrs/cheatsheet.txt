@@ -1,0 +1,20 @@
+python cheat sheet for data science
+https://elitedatascience.com/python-cheat-sheet
+
+8 Fun machine learning projects for beginners
+https://elitedatascience.com/machine-learning-projects-for-beginners
+
+Data sets for Data Science and Machine Learning
+https://elitedatascience.com/datasets
+
+Data science resources
+https://elitedatascience.com/data-science-resources
+
+5 genius deep learning libraries
+https://elitedatascience.com/python-deep-learning-libraries
+
+5 NLP python libraries
+https://elitedatascience.com/python-nlp-libraries
+
+5 tasty webscraping libraries
+https://elitedatascience.com/python-web-scraping-libraries
