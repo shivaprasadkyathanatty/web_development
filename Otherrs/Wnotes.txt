@@ -9267,3 +9267,7 @@ aws s3 cp /home/shivaprasad/Downloads/course_config_json/course-config-stag.json
 
 
 select cl.course_id,dc.source_id,count(dc.doc_seq_id) from ace_api_server_oer_student_exp.learning_path_item lpi join ace_api_server_oer_student_exp.learning_path lpd on lpd.learning_path_id=lpi.learning_path_id join ace_api_server_oer_student_exp.course_lesson cl on cl.course_lesson_id=lpd.course_lesson_id join centralized_content.document dc on lpi.doc_seq_id=dc.doc_seq_id join ace_api_server_oer_student_exp.course c on c.course_id=cl.course_id where dc.deleted=0 and lpi.deleted=0 and c.deleted=0  group by 1,2;
+
+
+
+akshambara pattina souharda sahaka, IDBI Bank Limited, 003500420000005
