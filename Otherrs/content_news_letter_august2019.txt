@@ -1,3 +1,70 @@
 Greetings!!
 Kindly cascade this information.
-Below is the list of activities undertaken by the content team at Intellus Learning during the month of July 2019:
+Below is the list of activities undertaken by the content team at Intellus Learning during the month of August 2019:
+
+Intellus Lite Specific:
+# Crawled top youtube videos (8K) related to IntellusLite chapter titles and keyterms. (CO-611)
+
+OER Content Addition:
+#OpenCulture: 1,300 free online courses from the world's leading universities --  Stanford, Yale, MIT, Harvard, Berkeley, Oxford and more.
+Covers:More than 15 disciplines ranging from Astronomy to Religion.
+Jira Ticket:CO-665
+Source Link:http://www.openculture.com/freeonlinecourses
+Source Name in ARP:You Tube
+Sample Document:https://idu-arp.intelluslearning.com/v2/course/document/102221814
+
+#University of Southern Queensland: USQ has developed open courses since 2007, when the institution joined the Open Education Consortium, and later the OERu.
+Jira Ticket:CO-666
+Covers:Sports and Psychology, Project Management
+Source Link:https://www.usq.edu.au/open-practice/open-courses
+Source Name in ARP:University of Southern Queensland
+Sample Document:https://idu-arp.intelluslearning.com/v2/course/document/338494255
+
+# Virginia Tech: Hosts free textbooks from open repositories.
+Jira Ticket:CO-672
+Covers:Business and Electronics
+Source Link:https://vtechworks.lib.vt.edu/handle/10919/70959
+Source Name in ARP:Virginia Tech
+Sample Document:https://idu-arp.intelluslearning.com/v2/course/document/328920566
+
+# University of Saskatchewan (usask): Hosts free textbooks from open repositories.
+Jira Ticket:CO-673
+Covers:Varied topics
+Source Link:https://openpress.usask.ca/catalog/
+Source Name in ARP:University of Saskatchewan
+Sample Document:https://idu-arp.intelluslearning.com/v2/course/document/328920616
+
+Library Content Addition:
+# Addition of 9.5 Million Proquest records belonging to latest months.(CO-602)
+
+Data Cleanup:
+# Dedup Signifier and Identifier Cleanse: The dedup signifier and identifier of all the Jstor records were scrutinised and corrected where needed. (CO-576)
+# Pa11y based accessibility values were cleaned up for EBSCO. (CO-634)
+# IOC Course documents were refreshed and cleansed. (CO-667)
+# Unused 85GB of pdf files at S3 were moved to Glacier storage. (CO-668)
+# document url corrected for eBookCentral documents to match doc_url_template entries. (CO-671)
+# Credo Reference data is refreshed for APUS. (CO-674)
+# Duplicate video display on SSD "Relevant Videos" carousel resolved. (SSD-450)
+# Launchpad orphaned assets removed. (TO-667)
+
+Useful Links:
+# Content newsletters archive can be found here:
+https://docs.google.com/document/d/1NKD1_v_ozEk6EEkQwAvnCo0Z2Kmf1bVa66mKq65iOog/edit?usp=sharing
+# Please raise content addition request through the link here (Refer "Pipeline" sheet):
+https://docs.google.com/spreadsheets/d/1QabJberaauiVbCsXalqW0MJ6heMriKCLuLuDcOt7pNk/edit?usp=sharing
+# List of Live institutes can be found here:
+https://docs.google.com/spreadsheets/d/11ZovPAiHNgAI0SwVDoQE92SUFCcNdBcvZx9ja8bOkPA/edit?usp=sharing
+# Update on New Institute setup requests can be found here:
+https://docs.google.com/spreadsheets/d/1ngKo4SB-KwoEA5h7btIfrcp6plFTP0InP9_Wt1RbtlQ/edit?usp=sharing
+
+Note:
+# Latest search index deployed and digital analytics updated for all institute platforms in ARP is dated 28Jul2019.
+# Latest search index deployed at IntellusLite is dated 01Sep2019.
+
+Please feel free to write your valuable feedback and for any changes in mail id/additions/preferences.
+Regards,
+Shivaprasad Kyathanatty
+Project Manager - Content
+Intellus Learning
+shivaprasad@intelluslearning.com
++91-9900197465
