@@ -1,12 +1,13 @@
-'''
-def arrayCheck(nums):
-    for i in nums:
+def arrayCheck(list):
+    for i in range(len(list)-2):
+        if list[i]==1 and list[i+1]==2 and list[i+2]==3:
+            return True
+    return False
 
+print(arrayCheck([1,1,2,4,1]))
+print(arrayCheck([1,1,2,3,1]))
+print (arrayCheck([1,1,2,1,2,3]))
 
-arrayCheck([1,1,2,3,1])
-arrayCheck([1,1,2,4,1])
-arrayCheck([1,1,2,1,2,3])
-'''
 
 
 def end_other(str,substr):
@@ -42,10 +43,10 @@ def no_teen_sum(a,b,c):
     return fix_teen(a)+fix_teen(b)+fix_teen(c)
 
 def fix_teen(n):
-    if n>12 & n<20:
+    if 12<n<20:
         if n==16:
             return n
-        if n==17:
+        elif n==17:
             return n
         else:
             return 0
@@ -57,3 +58,15 @@ print(no_teen_sum(2,13,1))
 print (no_teen_sum(2,1,14))
 print (no_teen_sum(1,16,17))
 print (no_teen_sum(1,17,2))
+
+
+def count_events(list):
+    new_list=[]
+    for i in list:
+        if i%2==0:
+            new_list.append(i)
+    return new_list
+
+
+even_list= count_events([2,1,2,3,4])
+print (len(even_list))
