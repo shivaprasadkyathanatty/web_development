@@ -1,3 +1,12 @@
+def stringBits(string_old):
+    new_str=""
+    for i in range(len(string_old)):
+        if i%2 != 0:
+            new_str = new_str + string_old[i]
+        return new_str
+print(stringBits('Hello'))
+
+
 def arrayCheck(list):
     for i in range(len(list)-2):
         if list[i]==1 and list[i+1]==2 and list[i+2]==3:
@@ -70,3 +79,9 @@ def count_events(list):
 
 even_list= count_events([2,1,2,3,4])
 print (len(even_list))
+
+n=11
+if n in [11,12,13,14]:
+    print (n)
+else:
+    print ('nothing')
