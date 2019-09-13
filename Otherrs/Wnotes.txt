@@ -9271,3 +9271,8 @@ select cl.course_id,dc.source_id,count(dc.doc_seq_id) from ace_api_server_oer_st
 
 
 akshambara pattina souharda sahaka, IDBI Bank Limited, 003500420000005
+
+
+
+
+https://docs.google.com/spreadsheets/d/1l4qV44bIF0zcwiG3PQ7vnmibyBnNrs_3HVwce79xoEI/edit?usp=sharing
