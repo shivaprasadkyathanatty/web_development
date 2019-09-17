@@ -7,4 +7,4 @@ def index(request):
 def users(request):
     user_list=User.objects.order_by('first_name')
     user_dict = {'users':user_list}
-    return rendr(request,'appTwo/users.html',context=user_dict)
+    return render(request,'appTwo/users.html',context=user_dict)
