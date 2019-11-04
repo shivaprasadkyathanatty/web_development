@@ -1,0 +1,60 @@
+{
+  first_name:"Shivaprasad",
+  last_name:"Kyathanatty",
+  memberships:["mem1","mem2"],
+  address:{
+    street:"Main Road",
+    city:"Maski"
+  }
+  contacts:[
+    {name:"Sannidhi",relationship:"daughter"},
+  ]
+}
+
+
+use prodcucts;
+db.posts.insert({
+  title:'Post One',
+  body:'Body of post one',
+  category:'News',
+  likes:4,
+  tags:['news','events'],
+  userL{
+    name:'John Doe',
+    status:'author'
+  },
+  date.Date()
+  });
+db.posts.insertMany([
+  {
+    title:"Post Two",
+    body:"Body of post two",
+    category:"Technology",
+    date:Date()
+  },
+  {
+    title:"Post Three",
+    body:"Body of post three",
+    category:"News",
+    date:Date()
+  },
+  {
+    title:"Post Two",
+    body:"Body of post four",
+    category:"Entertainment",
+    date:Date()
+  }
+  ])
+
+
+  db.posts.update(
+  {title:"Post Two"},
+  {
+    title:"Post Two",
+    body:"New post 2 body",
+    date:Date()
+  },
+  {
+    upsert:true
+  }
+  )
