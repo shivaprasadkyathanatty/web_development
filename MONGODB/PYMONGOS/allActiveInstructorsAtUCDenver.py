@@ -65,7 +65,7 @@ with client:
     with open(fileName,'w',newline="") as csvfile:
         # define csv writer
         writer=csv.writer(csvfile,delimiter=' ', quotechar='|',quoting=csv.QUOTE_MINIMAL)
-        fieldnames=['InstructorName','|','email']
+        fieldnames=['InstructorName','email']
         # write output headers
         writer.writerow(fieldnames)
         # writer output rows

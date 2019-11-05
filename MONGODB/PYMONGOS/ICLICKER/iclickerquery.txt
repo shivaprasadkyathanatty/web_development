@@ -17,3 +17,49 @@ db.getCollection('user').aggregate([
             "instructor_first_name": {"$first": "$lastName"},
             "instructor_email": {"$first": "$email"}}},
 ])
+
+
+
+
+
+
+
+
+
+use reef;
+
+dbk_agg.sampleSize = 100;
+dbk_agg.useLimitSample= true;
+;
+db.getCollection("course").aggregate([
+  { $match:{
+   "$and":[
+      { "discipline":{ $eq:"Chemistry" } },
+      { "name":{ $regex:"Chem" } }
+             ]
+   }
+  }
+,
+  { $lookup:
+     { from:         "user",
+       localField:   "userId",
+       foreignField: "_id",
+       as:           "userInfo"
+     }
+  },
+  { $unwind:  "$userInfo" },
+  { $lookup:
+     { from:         "credentials",
+       localField:   "userId",
+       foreignField: "userId",
+       as:           "credentialsInfo"
+     }
+  },
+/*  { $project: {
+          "instructorName": 1  ,
+          "institutionName": 1  ,
+          "discipline": 1  ,
+          "name": 1
+         }
+  }, */
+],{allowDiskUse: false});
